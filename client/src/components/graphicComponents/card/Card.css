@@ -2,7 +2,6 @@
     display: block;
     max-width: 100px;
     position: relative;
-
 }
 
 .card img {
@@ -21,5 +20,3 @@
 .card:hover p {
     visibility: visible;
 }
-
-

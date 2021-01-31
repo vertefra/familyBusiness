@@ -3,6 +3,8 @@ import { Deck } from './Deck'
 export class Game {
     constructor() {
         this.players = []
+        this.list = []
+        this.cemetery = []
     }
 
     createDeck() {
