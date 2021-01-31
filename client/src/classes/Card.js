@@ -1,20 +1,35 @@
-class Card{
-    constructor(title, description){
+class Card {
+    constructor(title, description) {
         this.title = title
         this.description = description
     }
 }
 
-class ActionCard extends Card {
-    constructor(title, description){
+export class FamilyCard extends Card {
+    constructor(title, description, gangsterName, gangsterFamily) {
         super(title, description)
-        this.type = "action"
+        this.gangsterName = gangsterName
+        this.gangsterFamily = gangsterFamily
     }
 }
 
-class RescueCard extends Card {
-    constructor(title, description){
+export class AttackCard extends Card {
+    constructor(title, description) {
         super(title, description)
-        this.type = ""
+        this.type = 'attack'
+    }
+}
+
+export class CounterCard extends Card {
+    constructor(title, description) {
+        super(title, description)
+        this.type = 'counter'
+    }
+}
+
+export class RescueCard extends Card {
+    constructor(title, description) {
+        super(title, description)
+        this.type = 'rescue'
     }
 }

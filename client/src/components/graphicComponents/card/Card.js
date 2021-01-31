@@ -1,10 +1,12 @@
 import React from 'react'
 import './Card.css'
 
-const Card = ({ imgUrl }) => {
+const Card = ({ card }) => {
     return (
-        <div className="card">
-            <img src={imgUrl} />
+        <div className="card" style={{"border": "1px solid black"}}>
+            <h1>{card.title}</h1>
+            <img src={card.image} />
+            <p>{card.description}</p>
         </div>
     )
 }

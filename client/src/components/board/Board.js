@@ -5,13 +5,16 @@ import List from './list/List'
 import Wall from './wall/Wall'
 import ActivePlayer from './activePlayer/ActivePlayer'
 import { Game } from '../../classes/Game'
+import { Contract } from '../../classes/AttackCards'
+import Card from '../graphicComponents/card/Card'
 
 const Board = () => {
-
     let game
     const handleStartNewGame = () => {
         const game = new Game()
     }
+
+    const contract = new Contract()
 
     return (
         <div>
@@ -23,6 +26,7 @@ const Board = () => {
             {game?.players.map((player) => {
                 return <ActivePlayer player={player} />
             })}
+            <Card card={contract}/>
         </div>
     )
 }

@@ -1,5 +1,5 @@
-class Deck{
-    constructor(){
+class Deck {
+    constructor() {
         this.deck = []
     }
 }
