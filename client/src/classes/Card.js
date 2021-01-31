@@ -1,14 +1,17 @@
+import { v4 as uuidv4 } from 'uuid'
+
 class Card {
     constructor(title, description) {
+        this.uuid = uuidv4()
         this.title = title
         this.description = description
     }
 
-    getCopies(){
-        if(this.copies){
+    getCopies() {
+        if (this.copies) {
             return this.copies
-        } 
-        throw Error("Card not instantiated correctly")
+        }
+        throw Error('Card not instantiated correctly')
     }
 }
 
