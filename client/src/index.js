@@ -4,5 +4,4 @@ import App from './App'
 const css = require('./style/main.css')
 const root = document.getElementById('root')
 
-ReactDOM.render(
-    <App />, root)
+ReactDOM.render(<App />, root)

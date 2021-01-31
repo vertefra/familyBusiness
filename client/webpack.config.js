@@ -1,6 +1,6 @@
 const path = require('path')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: './src/index.js',
@@ -19,14 +19,17 @@ module.exports = {
                 test: /\.m?js$/,
                 exclude: [/node_modules/, /dist/],
                 use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-env']
-                  }
-                }
-            }
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    },
+                },
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
         ],
-        
     },
 
     devServer: {
@@ -47,5 +50,5 @@ module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
 
-    plugins: [new HtmlWebpackPlugin()]
+    plugins: [new HtmlWebpackPlugin({ template: 'src/index.html' })],
 }
