@@ -34,7 +34,7 @@ The Double Cross card allows you to collect 1 mobster from each opponent and add
 them all to the Hit List in any order that you choose.
 `
 
-export const mobWarDescription =`
+export const mobWarDescription = `
 Mob War starts (or restarts at a normal rate) a Mob War, even if there are less than
 6 mobsters on the Hit List.
 `

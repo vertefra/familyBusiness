@@ -3,6 +3,13 @@ class Card {
         this.title = title
         this.description = description
     }
+
+    getCopies(){
+        if(this.copies){
+            return this.copies
+        } 
+        throw Error("Card not instantiated correctly")
+    }
 }
 
 export class FamilyCard extends Card {
