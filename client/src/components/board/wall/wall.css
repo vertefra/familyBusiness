@@ -1,0 +1,10 @@
+.wall {
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    height: 30%;
+    background: brown;
+    width: 20%;
+    color: #fff;
+    transform: translateY(-50%);
+}
