@@ -1,21 +1,29 @@
 import React from 'react'
-import activePlayer from './activePlayer/activePlayer'
 import './board.css'
 import Cemetery from './cemetery/Cemetery'
 import List from './list/List'
 import Wall from './wall/Wall'
+import ActivePlayer from './activePlayer/ActivePlayer'
 
 const Board = () => {
-    const players = [] // Qua ci saranno le instances della player class
+
+    
+
+
+
+    const handleStartNewGame = () => {
+        const game = new Game()
+    }     
 
     return (
         <div>
             <h1>Family business board</h1>
+            <button onClick={handleStartNewGame}>New Game</button>
             <Wall />
             <List />
             <Cemetery />
-            {players.map((player) => {
-                return <activePlayer player={player} />
+            {game.players.map((player) => {
+                return <ActivePlayer player={player} />
             })}
         </div>
     )
