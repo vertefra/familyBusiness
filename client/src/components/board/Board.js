@@ -26,7 +26,7 @@ const Board = () => {
             {game?.players.map((player) => {
                 return <ActivePlayer player={player} />
             })}
-            <Card card={contract}/>
+            <Card card={contract} />
         </div>
     )
 }
