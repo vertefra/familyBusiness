@@ -1409,7 +1409,11 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(_assets_img_chicago_2858987_png__WEBPACK_IMPORTED_MODULE_3__);
 // Module
+<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, "body {\n    height: 100vh;\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    background-color: rgba(0,0,10,0.8);\n    background-size: cover;\n    color: darkorange;\n}\n\nbody h1 {\n    text-align: center;\n}\n\n#root {\n    height: 100vh;\n    position: relative;\n}", "",{"version":3,"sources":["webpack://./src/components/board/board.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,yDAA6D;IAC7D,kCAAkC;IAClC,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,kBAAkB;AACtB","sourcesContent":["body {\n    height: 100vh;\n    background-image: url(\"../../assets/img/chicago-2858987.png\");\n    background-color: rgba(0,0,10,0.8);\n    background-size: cover;\n    color: darkorange;\n}\n\nbody h1 {\n    text-align: center;\n}\n\n#root {\n    height: 100vh;\n    position: relative;\n}"],"sourceRoot":""}]);
+=======
+___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n    height: 100vh;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n    background-color: rgba(0,0,10,0.8);\r\n    background-size: cover;\r\n    color: darkorange;\r\n}\r\n\r\nbody h1 {\r\n    text-align: center;\r\n}\r\n\r\n#root {\r\n    height: 100vh;\r\n    position: relative;\r\n}", "",{"version":3,"sources":["webpack://./src/components/board/board.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,yDAA6D;IAC7D,kCAAkC;IAClC,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,kBAAkB;AACtB","sourcesContent":["body {\r\n    height: 100vh;\r\n    background-image: url(\"../../assets/img/chicago-2858987.png\");\r\n    background-color: rgba(0,0,10,0.8);\r\n    background-size: cover;\r\n    color: darkorange;\r\n}\r\n\r\nbody h1 {\r\n    text-align: center;\r\n}\r\n\r\n#root {\r\n    height: 100vh;\r\n    position: relative;\r\n}"],"sourceRoot":""}]);
+>>>>>>> cd1e079de161e0749b0ee687243dbc6f3fbd2966
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1463,7 +1467,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
+<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, ".list {\n    position: absolute;\nleft: 45%;\ntop: 50%;\nheight: 20%;\nbackground: lightgrey;\nwidth: 30%;\ncolor: #fff;\ntransform: translateY(-50%);\n} ", "",{"version":3,"sources":["webpack://./src/components/board/list/list.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;AACtB,SAAS;AACT,QAAQ;AACR,WAAW;AACX,qBAAqB;AACrB,UAAU;AACV,WAAW;AACX,2BAA2B;AAC3B","sourcesContent":[".list {\n    position: absolute;\nleft: 45%;\ntop: 50%;\nheight: 20%;\nbackground: lightgrey;\nwidth: 30%;\ncolor: #fff;\ntransform: translateY(-50%);\n} "],"sourceRoot":""}]);
+=======
+___CSS_LOADER_EXPORT___.push([module.id, ".list {\r\n    position: absolute;\r\nleft: 45%;\r\ntop: 50%;\r\nheight: 20%;\r\nbackground: lightgrey;\r\nwidth: 30%;\r\ncolor: #fff;\r\ntransform: translateY(-50%);\r\n} ", "",{"version":3,"sources":["webpack://./src/components/board/list/list.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;AACtB,SAAS;AACT,QAAQ;AACR,WAAW;AACX,qBAAqB;AACrB,UAAU;AACV,WAAW;AACX,2BAA2B;AAC3B","sourcesContent":[".list {\r\n    position: absolute;\r\nleft: 45%;\r\ntop: 50%;\r\nheight: 20%;\r\nbackground: lightgrey;\r\nwidth: 30%;\r\ncolor: #fff;\r\ntransform: translateY(-50%);\r\n} "],"sourceRoot":""}]);
+>>>>>>> cd1e079de161e0749b0ee687243dbc6f3fbd2966
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1490,7 +1498,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
+<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, ".wall {\n    position: absolute;\n    left: 20%;\n    top: 50%;\n    height: 20%;\n    background: brown;\n    width: 20%;\n    color: #fff;\n    transform: translateY(-50%);\n}", "",{"version":3,"sources":["webpack://./src/components/board/wall/wall.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;IAClB,SAAS;IACT,QAAQ;IACR,WAAW;IACX,iBAAiB;IACjB,UAAU;IACV,WAAW;IACX,2BAA2B;AAC/B","sourcesContent":[".wall {\n    position: absolute;\n    left: 20%;\n    top: 50%;\n    height: 20%;\n    background: brown;\n    width: 20%;\n    color: #fff;\n    transform: translateY(-50%);\n}"],"sourceRoot":""}]);
+=======
+___CSS_LOADER_EXPORT___.push([module.id, ".wall {\r\n    position: absolute;\r\n    left: 20%;\r\n    top: 50%;\r\n    height: 20%;\r\n    background: brown;\r\n    width: 20%;\r\n    color: #fff;\r\n    transform: translateY(-50%);\r\n}", "",{"version":3,"sources":["webpack://./src/components/board/wall/wall.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;IAClB,SAAS;IACT,QAAQ;IACR,WAAW;IACX,iBAAiB;IACjB,UAAU;IACV,WAAW;IACX,2BAA2B;AAC/B","sourcesContent":[".wall {\r\n    position: absolute;\r\n    left: 20%;\r\n    top: 50%;\r\n    height: 20%;\r\n    background: brown;\r\n    width: 20%;\r\n    color: #fff;\r\n    transform: translateY(-50%);\r\n}"],"sourceRoot":""}]);
+>>>>>>> cd1e079de161e0749b0ee687243dbc6f3fbd2966
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1517,7 +1529,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
+<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n} */\n", "",{"version":3,"sources":["webpack://./src/sharedStyle/main.css"],"names":[],"mappings":"AAAA;;;;;GAKG","sourcesContent":["/* * {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n} */\n"],"sourceRoot":""}]);
+=======
+___CSS_LOADER_EXPORT___.push([module.id, "/* * {\r\n    border: 0;\r\n    padding: 0;\r\n    margin: 0;\r\n    list-style: none;\r\n} */\r\n", "",{"version":3,"sources":["webpack://./src/sharedStyle/main.css"],"names":[],"mappings":"AAAA;;;;;GAKG","sourcesContent":["/* * {\r\n    border: 0;\r\n    padding: 0;\r\n    margin: 0;\r\n    list-style: none;\r\n} */\r\n"],"sourceRoot":""}]);
+>>>>>>> cd1e079de161e0749b0ee687243dbc6f3fbd2966
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
