@@ -1,11 +1,9 @@
-class Game{
-    constructor(){
+export class Game {
+    constructor() {
         this.players = []
     }
 
-    addPlayer(player){
+    addPlayer(player) {
         this.players.push(player)
     }
-
-    
 }

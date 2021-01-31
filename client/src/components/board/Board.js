@@ -4,16 +4,14 @@ import Cemetery from './cemetery/Cemetery'
 import List from './list/List'
 import Wall from './wall/Wall'
 import ActivePlayer from './activePlayer/ActivePlayer'
+import { Game } from '../../classes/Game'
 
 const Board = () => {
 
-    
-
-
-
+    let game
     const handleStartNewGame = () => {
         const game = new Game()
-    }     
+    }
 
     return (
         <div>
@@ -22,7 +20,7 @@ const Board = () => {
             <Wall />
             <List />
             <Cemetery />
-            {game.players.map((player) => {
+            {game?.players.map((player) => {
                 return <ActivePlayer player={player} />
             })}
         </div>

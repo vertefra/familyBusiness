@@ -48,7 +48,7 @@ module.exports = {
         ignored: [path.posix.resolve(__dirname, './node_modules')],
     },
     mode: 'development',
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
 
     plugins: [new HtmlWebpackPlugin({ template: 'src/index.html' })],
 }
