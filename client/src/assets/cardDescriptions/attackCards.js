@@ -10,7 +10,7 @@ box. Either a Family Influence or a Mob Power counters this card. (If a Mob Powe
 played, the Priority Contract player must put one of their own mobsters first in line!).
 `
 
-export const doubleContractdescription = `
+export const doubleContractDescription = `
 A Double Contract has the same effect as playing 2 Contract cards on the same
 player. The targeted player must put 2 mobsters on the Hit List. Either Family Infl uence
 or Mob Power may counter a Double Contract, but the counter card only saves the fi rst

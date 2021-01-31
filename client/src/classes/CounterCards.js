@@ -11,7 +11,12 @@ import {
 } from '../assets/cardDescriptions/counterCards'
 
 import { CounterCard } from './Card'
-import { Contract, DoubleContract, PriorityContract, Vendetta } from './AttackCards'
+import {
+    Contract,
+    DoubleContract,
+    PriorityContract,
+    Vendetta,
+} from './AttackCards'
 import { TakeItOntheLam } from './RescueCards'
 
 export class MobPower extends CounterCard {
@@ -44,7 +49,6 @@ export class Finger extends CounterCard {
     }
 }
 
-
 export class SafeHouse extends CounterCard {
     constructor(title = 'Safe House', description = safeHouseDescription) {
         super(title, description)
@@ -52,4 +56,4 @@ export class SafeHouse extends CounterCard {
         this.image = safeHouseImg
         this.copies = 1
     }
-} 
+}
