@@ -1,0 +1,10 @@
+.cemetery {
+    position: absolute;
+left: 20%;
+top: 60%;
+height: 10%;
+background: darkolivegreen;
+width: 55%;
+color: #fff;
+transform: translateY(-50%);
+} 

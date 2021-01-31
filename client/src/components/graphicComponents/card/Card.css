@@ -1,0 +1,25 @@
+.card {
+    display: block;
+    max-width: 100px;
+    position: relative;
+
+}
+
+.card img {
+    width: 70px;
+}
+
+.card:hover img {
+    width: 100px;
+}
+
+.card p {
+    position: absolute;
+    visibility: hidden;
+}
+
+.card:hover p {
+    visibility: visible;
+}
+
+

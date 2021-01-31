@@ -1,0 +1,16 @@
+body {
+    height: 100vh;
+    background-image: url("../../assets/img/chicago-2858987.png");
+    background-color: rgba(0,0,10,0.8);
+    background-size: cover;
+    color: darkorange;
+}
+
+body h1 {
+    text-align: center;
+}
+
+#root {
+    height: 100vh;
+    position: relative;
+}
