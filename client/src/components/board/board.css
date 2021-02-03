@@ -1,4 +1,4 @@
-body {
+.wrapper {
     height: 100vh;
     background-image: url('../../assets/img/chicago-2858987.png');
     background-color: rgba(0, 0, 10, 0.8);
@@ -6,11 +6,25 @@ body {
     color: darkorange;
 }
 
-body h1 {
-    text-align: center;
+.executionList {
+    width: 100%;
+    height: 30vh;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-#root {
-    height: 100vh;
-    position: relative;
+.cemeteryContainer {
+    width: 15%;
+    position: absolute;
+    bottom: 15px;
+    height: 25vh;
+}
+
+body h1 {
+    text-align: center;
 }

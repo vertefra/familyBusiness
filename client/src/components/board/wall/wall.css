@@ -1,10 +1,12 @@
 .wall {
-    position: absolute;
-    left: 20%;
-    top: 50%;
-    height: 20%;
+    left: 50px;
+    top: 60%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 4px 4px darkorange;
     background: brown;
-    width: 20%;
+    background-image: url('../../../assets/img/brick-wall.jpg');
+    background-size: cover;
+    width: 15%;
     color: #fff;
-    transform: translateY(-50%);
 }

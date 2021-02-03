@@ -1,6 +1,56 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayLikeToArray.js ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
@@ -61,6 +111,31 @@ module.exports = _createClass;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
@@ -105,6 +180,85 @@ module.exports = _inherits;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
+  \*********************************************************************/
+/***/ ((module) => {
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableRest.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableRest.js ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableRest;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
@@ -146,6 +300,50 @@ module.exports = _setPrototypeOf;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/slicedToArray.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
+  \**************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles */ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js");
+
+var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit */ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
+
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableRest = __webpack_require__(/*! ./nonIterableRest */ "./node_modules/@babel/runtime/helpers/nonIterableRest.js");
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/typeof.js":
 /*!*******************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
@@ -169,6 +367,27 @@ function _typeof(obj) {
 }
 
 module.exports = _typeof;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
+  \***************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
 
 /***/ }),
 
@@ -1022,6 +1241,8 @@ var Game = /*#__PURE__*/function () {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Game);
 
     this.players = [];
+    this.list = [];
+    this.cemetery = [];
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Game, [{
@@ -1256,30 +1477,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Board": () => (/* binding */ Board)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _board_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./board.css */ "./src/components/board/board.css");
-/* harmony import */ var _cemetery_Cemetery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cemetery/Cemetery */ "./src/components/board/cemetery/Cemetery.js");
-/* harmony import */ var _list_List__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./list/List */ "./src/components/board/list/List.js");
-/* harmony import */ var _wall_Wall__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./wall/Wall */ "./src/components/board/wall/Wall.js");
-/* harmony import */ var _classes_Game__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../classes/Game */ "./src/classes/Game.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _board_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./board.css */ "./src/components/board/board.css");
+/* harmony import */ var _cemetery_Cemetery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cemetery/Cemetery */ "./src/components/board/cemetery/Cemetery.js");
+/* harmony import */ var _list_List__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./list/List */ "./src/components/board/list/List.js");
+/* harmony import */ var _wall_Wall__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./wall/Wall */ "./src/components/board/wall/Wall.js");
+/* harmony import */ var _classes_Game__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../classes/Game */ "./src/classes/Game.js");
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
 
 
 
+
+var game = new _classes_Game__WEBPACK_IMPORTED_MODULE_8__.Game();
 var Board = function Board() {
-  var game = new _classes_Game__WEBPACK_IMPORTED_MODULE_5__.Game();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(game),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(_useState, 2),
+      currentGame = _useState2[0],
+      updateGame = _useState2[1];
 
   var handleStartNewGame = function handleStartNewGame(e) {
-    console.log('clicked');
-    game.createDeck();
-    console.log(game.gameDeck);
+    currentGame.createDeck();
+    var card = currentGame.gameDeck.pop(); // Aggiungo la carta tolta dal mazzo in cimitero
+    // usando hook updateGame che trigger il rerender
+    // del DOM
+
+    updateGame(_objectSpread(_objectSpread({}, currentGame), {}, {
+      cemetery: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(currentGame.cemetery), [card])
+    }));
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Family business board"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("h1", null, "Family business board"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("button", {
     onClick: handleStartNewGame
-  }, "New Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_wall_Wall__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_list_List__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_cemetery_Cemetery__WEBPACK_IMPORTED_MODULE_2__.default, null));
+  }, "New Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_wall_Wall__WEBPACK_IMPORTED_MODULE_7__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_list_List__WEBPACK_IMPORTED_MODULE_6__.default, {
+    list: game.list
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_cemetery_Cemetery__WEBPACK_IMPORTED_MODULE_5__.default, {
+    cemetery: currentGame.cemetery
+  }));
 };
 
 /***/ }),
@@ -1296,14 +1544,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _cemetery_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cemetery.css */ "./src/components/board/cemetery/cemetery.css");
+/* harmony import */ var _classes_CounterCards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../classes/CounterCards */ "./src/classes/CounterCards.js");
+/* harmony import */ var _cemetery_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cemetery.css */ "./src/components/board/cemetery/cemetery.css");
+/* harmony import */ var _graphicComponents_card_Card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../graphicComponents/card/Card */ "./src/components/graphicComponents/card/Card.js");
 
 
 
-var Cemetery = function Cemetery() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "cemetery"
-  }, "Cemetery");
+
+
+var Cemetery = function Cemetery(_ref) {
+  var cemetery = _ref.cemetery;
+  console.log(cemetery);
+  return (
+    /*#__PURE__*/
+    // nel cimitero .map organizza il render di tutte le carte nell
+    // nell'array cimiter. una volta aggiunta una carta la stampa su schermo
+    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "cemetery"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Cemetery"), cemetery.map(function (card) {
+      var cardClass;
+
+      if (card.title === "Safe House") {
+        cardClass = new _classes_CounterCards__WEBPACK_IMPORTED_MODULE_1__.SafeHouse();
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_graphicComponents_card_Card__WEBPACK_IMPORTED_MODULE_3__.Card, {
+        card: cardClass,
+        key: cardClass.uuid
+      });
+    }))
+  );
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cemetery);
@@ -1362,6 +1632,32 @@ function Wall() {
 
 /***/ }),
 
+/***/ "./src/components/graphicComponents/card/Card.js":
+/*!*******************************************************!*\
+  !*** ./src/components/graphicComponents/card/Card.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Card": () => (/* binding */ Card)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Card_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Card.css */ "./src/components/graphicComponents/card/Card.css");
+
+
+var Card = function Card(_ref) {
+  var card = _ref.card;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, card.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: card.image
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, card.description));
+};
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -1409,11 +1705,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(_assets_img_chicago_2858987_png__WEBPACK_IMPORTED_MODULE_3__);
 // Module
-<<<<<<< HEAD
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n    height: 100vh;\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    background-color: rgba(0,0,10,0.8);\n    background-size: cover;\n    color: darkorange;\n}\n\nbody h1 {\n    text-align: center;\n}\n\n#root {\n    height: 100vh;\n    position: relative;\n}", "",{"version":3,"sources":["webpack://./src/components/board/board.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,yDAA6D;IAC7D,kCAAkC;IAClC,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,kBAAkB;AACtB","sourcesContent":["body {\n    height: 100vh;\n    background-image: url(\"../../assets/img/chicago-2858987.png\");\n    background-color: rgba(0,0,10,0.8);\n    background-size: cover;\n    color: darkorange;\n}\n\nbody h1 {\n    text-align: center;\n}\n\n#root {\n    height: 100vh;\n    position: relative;\n}"],"sourceRoot":""}]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n    height: 100vh;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n    background-color: rgba(0,0,10,0.8);\r\n    background-size: cover;\r\n    color: darkorange;\r\n}\r\n\r\nbody h1 {\r\n    text-align: center;\r\n}\r\n\r\n#root {\r\n    height: 100vh;\r\n    position: relative;\r\n}", "",{"version":3,"sources":["webpack://./src/components/board/board.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,yDAA6D;IAC7D,kCAAkC;IAClC,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,kBAAkB;AACtB","sourcesContent":["body {\r\n    height: 100vh;\r\n    background-image: url(\"../../assets/img/chicago-2858987.png\");\r\n    background-color: rgba(0,0,10,0.8);\r\n    background-size: cover;\r\n    color: darkorange;\r\n}\r\n\r\nbody h1 {\r\n    text-align: center;\r\n}\r\n\r\n#root {\r\n    height: 100vh;\r\n    position: relative;\r\n}"],"sourceRoot":""}]);
->>>>>>> cd1e079de161e0749b0ee687243dbc6f3fbd2966
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n    height: 100vh;\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    background-color: rgba(0, 0, 10, 0.8);\n    background-size: cover;\n    color: darkorange;\n}\n\nbody h1 {\n    text-align: center;\n}\n\n#root {\n    height: 100vh;\n    position: relative;\n}\n", "",{"version":3,"sources":["webpack://./src/components/board/board.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,yDAA6D;IAC7D,qCAAqC;IACrC,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,kBAAkB;AACtB","sourcesContent":["body {\n    height: 100vh;\n    background-image: url('../../assets/img/chicago-2858987.png');\n    background-color: rgba(0, 0, 10, 0.8);\n    background-size: cover;\n    color: darkorange;\n}\n\nbody h1 {\n    text-align: center;\n}\n\n#root {\n    height: 100vh;\n    position: relative;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1440,7 +1732,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".cemetery {\n    position: absolute;\nleft: 20%;\ntop: 60%;\nheight: 10%;\nbackground: darkolivegreen;\nwidth: 55%;\ncolor: #fff;\ntransform: translateY(-50%);\n} ", "",{"version":3,"sources":["webpack://./src/components/board/cemetery/cemetery.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;AACtB,SAAS;AACT,QAAQ;AACR,WAAW;AACX,0BAA0B;AAC1B,UAAU;AACV,WAAW;AACX,2BAA2B;AAC3B","sourcesContent":[".cemetery {\n    position: absolute;\nleft: 20%;\ntop: 60%;\nheight: 10%;\nbackground: darkolivegreen;\nwidth: 55%;\ncolor: #fff;\ntransform: translateY(-50%);\n} "],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".cemetery {\n    position: absolute;\n    left: 20%;\n    top: 60%;\n    height: 10%;\n    background: darkolivegreen;\n    width: 55%;\n    color: #fff;\n    transform: translateY(-50%);\n}\n", "",{"version":3,"sources":["webpack://./src/components/board/cemetery/cemetery.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;IAClB,SAAS;IACT,QAAQ;IACR,WAAW;IACX,0BAA0B;IAC1B,UAAU;IACV,WAAW;IACX,2BAA2B;AAC/B","sourcesContent":[".cemetery {\n    position: absolute;\n    left: 20%;\n    top: 60%;\n    height: 10%;\n    background: darkolivegreen;\n    width: 55%;\n    color: #fff;\n    transform: translateY(-50%);\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1467,11 +1759,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-<<<<<<< HEAD
-___CSS_LOADER_EXPORT___.push([module.id, ".list {\n    position: absolute;\nleft: 45%;\ntop: 50%;\nheight: 20%;\nbackground: lightgrey;\nwidth: 30%;\ncolor: #fff;\ntransform: translateY(-50%);\n} ", "",{"version":3,"sources":["webpack://./src/components/board/list/list.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;AACtB,SAAS;AACT,QAAQ;AACR,WAAW;AACX,qBAAqB;AACrB,UAAU;AACV,WAAW;AACX,2BAA2B;AAC3B","sourcesContent":[".list {\n    position: absolute;\nleft: 45%;\ntop: 50%;\nheight: 20%;\nbackground: lightgrey;\nwidth: 30%;\ncolor: #fff;\ntransform: translateY(-50%);\n} "],"sourceRoot":""}]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, ".list {\r\n    position: absolute;\r\nleft: 45%;\r\ntop: 50%;\r\nheight: 20%;\r\nbackground: lightgrey;\r\nwidth: 30%;\r\ncolor: #fff;\r\ntransform: translateY(-50%);\r\n} ", "",{"version":3,"sources":["webpack://./src/components/board/list/list.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;AACtB,SAAS;AACT,QAAQ;AACR,WAAW;AACX,qBAAqB;AACrB,UAAU;AACV,WAAW;AACX,2BAA2B;AAC3B","sourcesContent":[".list {\r\n    position: absolute;\r\nleft: 45%;\r\ntop: 50%;\r\nheight: 20%;\r\nbackground: lightgrey;\r\nwidth: 30%;\r\ncolor: #fff;\r\ntransform: translateY(-50%);\r\n} "],"sourceRoot":""}]);
->>>>>>> cd1e079de161e0749b0ee687243dbc6f3fbd2966
+___CSS_LOADER_EXPORT___.push([module.id, ".list {\n    position: absolute;\n    left: 45%;\n    top: 50%;\n    height: 20%;\n    background: lightgrey;\n    width: 30%;\n    color: #fff;\n    transform: translateY(-50%);\n}\n", "",{"version":3,"sources":["webpack://./src/components/board/list/list.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;IAClB,SAAS;IACT,QAAQ;IACR,WAAW;IACX,qBAAqB;IACrB,UAAU;IACV,WAAW;IACX,2BAA2B;AAC/B","sourcesContent":[".list {\n    position: absolute;\n    left: 45%;\n    top: 50%;\n    height: 20%;\n    background: lightgrey;\n    width: 30%;\n    color: #fff;\n    transform: translateY(-50%);\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1498,11 +1786,34 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-<<<<<<< HEAD
-___CSS_LOADER_EXPORT___.push([module.id, ".wall {\n    position: absolute;\n    left: 20%;\n    top: 50%;\n    height: 20%;\n    background: brown;\n    width: 20%;\n    color: #fff;\n    transform: translateY(-50%);\n}", "",{"version":3,"sources":["webpack://./src/components/board/wall/wall.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;IAClB,SAAS;IACT,QAAQ;IACR,WAAW;IACX,iBAAiB;IACjB,UAAU;IACV,WAAW;IACX,2BAA2B;AAC/B","sourcesContent":[".wall {\n    position: absolute;\n    left: 20%;\n    top: 50%;\n    height: 20%;\n    background: brown;\n    width: 20%;\n    color: #fff;\n    transform: translateY(-50%);\n}"],"sourceRoot":""}]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, ".wall {\r\n    position: absolute;\r\n    left: 20%;\r\n    top: 50%;\r\n    height: 20%;\r\n    background: brown;\r\n    width: 20%;\r\n    color: #fff;\r\n    transform: translateY(-50%);\r\n}", "",{"version":3,"sources":["webpack://./src/components/board/wall/wall.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;IAClB,SAAS;IACT,QAAQ;IACR,WAAW;IACX,iBAAiB;IACjB,UAAU;IACV,WAAW;IACX,2BAA2B;AAC/B","sourcesContent":[".wall {\r\n    position: absolute;\r\n    left: 20%;\r\n    top: 50%;\r\n    height: 20%;\r\n    background: brown;\r\n    width: 20%;\r\n    color: #fff;\r\n    transform: translateY(-50%);\r\n}"],"sourceRoot":""}]);
->>>>>>> cd1e079de161e0749b0ee687243dbc6f3fbd2966
+___CSS_LOADER_EXPORT___.push([module.id, ".wall {\n    position: absolute;\n    left: 20%;\n    top: 50%;\n    height: 20%;\n    background: brown;\n    width: 20%;\n    color: #fff;\n    transform: translateY(-50%);\n}\n", "",{"version":3,"sources":["webpack://./src/components/board/wall/wall.css"],"names":[],"mappings":"AAAA;IACI,kBAAkB;IAClB,SAAS;IACT,QAAQ;IACR,WAAW;IACX,iBAAiB;IACjB,UAAU;IACV,WAAW;IACX,2BAA2B;AAC/B","sourcesContent":[".wall {\n    position: absolute;\n    left: 20%;\n    top: 50%;\n    height: 20%;\n    background: brown;\n    width: 20%;\n    color: #fff;\n    transform: translateY(-50%);\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/components/graphicComponents/card/Card.css":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/components/graphicComponents/card/Card.css ***!
+  \**********************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".card {\n    display: block;\n    max-width: 100px;\n    position: relative;\n}\n\n.card img {\n    width: 70px;\n}\n\n.card:hover img {\n    width: 100px;\n}\n\n.card p {\n    position: absolute;\n    visibility: hidden;\n}\n\n.card:hover p {\n    visibility: visible;\n}\n", "",{"version":3,"sources":["webpack://./src/components/graphicComponents/card/Card.css"],"names":[],"mappings":"AAAA;IACI,cAAc;IACd,gBAAgB;IAChB,kBAAkB;AACtB;;AAEA;IACI,WAAW;AACf;;AAEA;IACI,YAAY;AAChB;;AAEA;IACI,kBAAkB;IAClB,kBAAkB;AACtB;;AAEA;IACI,mBAAmB;AACvB","sourcesContent":[".card {\n    display: block;\n    max-width: 100px;\n    position: relative;\n}\n\n.card img {\n    width: 70px;\n}\n\n.card:hover img {\n    width: 100px;\n}\n\n.card p {\n    position: absolute;\n    visibility: hidden;\n}\n\n.card:hover p {\n    visibility: visible;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1529,11 +1840,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-<<<<<<< HEAD
-___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n} */\n", "",{"version":3,"sources":["webpack://./src/sharedStyle/main.css"],"names":[],"mappings":"AAAA;;;;;GAKG","sourcesContent":["/* * {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n} */\n"],"sourceRoot":""}]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, "/* * {\r\n    border: 0;\r\n    padding: 0;\r\n    margin: 0;\r\n    list-style: none;\r\n} */\r\n", "",{"version":3,"sources":["webpack://./src/sharedStyle/main.css"],"names":[],"mappings":"AAAA;;;;;GAKG","sourcesContent":["/* * {\r\n    border: 0;\r\n    padding: 0;\r\n    margin: 0;\r\n    list-style: none;\r\n} */\r\n"],"sourceRoot":""}]);
->>>>>>> cd1e079de161e0749b0ee687243dbc6f3fbd2966
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n}\n", "",{"version":3,"sources":["webpack://./src/sharedStyle/main.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,SAAS;IACT,gBAAgB;AACpB","sourcesContent":["* {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31837,6 +32144,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_wall_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./src/components/graphicComponents/card/Card.css":
+/*!********************************************************!*\
+  !*** ./src/components/graphicComponents/card/Card.css ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_Card_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!./Card.css */ "./node_modules/css-loader/dist/cjs.js!./src/components/graphicComponents/card/Card.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_Card_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_Card_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

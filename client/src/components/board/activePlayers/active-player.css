@@ -1,4 +1,4 @@
-activeplayer {
+/* activeplayer {
     border: 1px solid gray;
     width: 100px;
     height: 60px;
@@ -21,4 +21,4 @@ activeplayer:nth-of-type(2):last-of-type {
     transform: translateX(-50%);
     width: 30%;
     height: 120px;
-}
+} */

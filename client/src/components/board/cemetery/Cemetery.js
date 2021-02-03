@@ -10,20 +10,14 @@ const Cemetery = ({ cemetery }) => {
         // nel cimitero .map organizza il render di tutte le carte nell
         // nell'array cimiter. una volta aggiunta una carta la stampa su schermo
 
-
         <div className="cemetery">
-            
-        <h1>Cemetery</h1>
-
             {cemetery.map((card) => {
                 let cardClass
-                if(card.title === "Safe House"){
+                if (card.title === 'Safe House') {
                     cardClass = new SafeHouse()
                 }
-                return <Card card={cardClass} key={cardClass.uuid}/>
+                return <Card card={cardClass} key={cardClass.uuid} />
             })}
-
-
         </div>
     )
 }

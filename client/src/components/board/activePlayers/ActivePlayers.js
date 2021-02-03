@@ -1,7 +1,7 @@
 import React from 'react'
 
-const ActivePlayer = ({ player }) => {
+const ActivePlayers = ({ player }) => {
     return <div>Active player board</div>
 }
 
-export default ActivePlayer
+export default ActivePlayers
