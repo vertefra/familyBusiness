@@ -1,18 +1,23 @@
 import React from 'react'
 import './Card.css'
 
-import imgTest from '../../../assets/cardsImages/safeHouse.png'
+import mobster from '../../../assets/img/mobster.png'
 
 export const Card = ({ card }) => {
-    card = {
-        title: 'mock card',
-        image: imgTest,
-        description: 'descdkl;dfvks;lskffv;awlskfl;kfdl;aksdflkadsl;fkadsl;',
+    let addictionalClass
+
+    if (card.title === 'Mobster Card') {
+        card.image = mobster
+        addictionalClass = `mobster-${card.color}`
     }
     return (
         <>
-            <div className="card">
-                <h1>{card.title}</h1>
+            <div className={`card ${addictionalClass}`}>
+                <h1>
+                    {card.title === 'Mobster Card'
+                        ? `${card.gangsterName}`
+                        : `${card.title}`}
+                </h1>
                 <img src={card.image} />
             </div>
             <p className="cardDescription">{card.description}</p>

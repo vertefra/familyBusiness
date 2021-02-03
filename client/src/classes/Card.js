@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 class Card {
     constructor(title, description) {
-        this.uuid = uuidv4()
+        this.cardID = uuidv4()
         this.title = title
         this.description = description
     }
@@ -16,10 +16,17 @@ class Card {
 }
 
 export class FamilyCard extends Card {
-    constructor(title, description, gangsterName, gangsterFamily) {
+    constructor(
+        gangsterFamily,
+        color,
+        gangsterName,
+        title = 'Mobster Card',
+        description = 'Pillars of your family'
+    ) {
         super(title, description)
-        this.gangsterName = gangsterName
+        this.color = color
         this.gangsterFamily = gangsterFamily
+        this.gangsterName = gangsterName
     }
 }
 

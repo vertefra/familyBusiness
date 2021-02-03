@@ -4,10 +4,14 @@ import React from 'react'
 import Family from './Family'
 import Hand from './Hand'
 
-const Player = () => {
+const Player = ({ game, playerID }) => {
+    const { players } = game
+
+    const currentPlayer = players.find((p) => p.playerID === playerID)
+
     return (
         <div className="player">
-            <Family />
+            {currentPlayer && <Family mobsters={currentPlayer.mobsterCards} />}
             <Hand />
         </div>
     )

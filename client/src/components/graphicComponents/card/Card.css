@@ -36,3 +36,8 @@
 .card:hover .cardDescription {
     visibility: visible;
 }
+
+.mobster-red {
+    background-color: red;
+    color: black;
+}
