@@ -15,8 +15,11 @@
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+<<<<<<< HEAD
     "react-router-dom": "^5.2.0",
     "socket.io-client": "^3.1.1",
+=======
+>>>>>>> 76c6145d111c5b8211a6a1d1b38f5511677e6b56
     "uuid": "^8.3.2"
   },
   "devDependencies": {
