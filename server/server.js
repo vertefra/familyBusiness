@@ -3,7 +3,8 @@ import cors from 'cors';
 import httpServer from 'http';
 import { Server } from 'socket.io';
 import chalk from 'chalk';
-import { activeGames } from './Games';
+import { activeGames } from './Games.js';
+import { addNewGameEvent } from './socketEvents/addNewGameEvent.js';
 
 const app = Express();
 const http = httpServer.Server(app);
@@ -18,7 +19,11 @@ const io = new Server(http, {
 const PORT = 3000;
 
 io.on('connection', (socket) => {
-	activeGames.addGame(socket.id);
+	const userID = socket.id;
+	console.log(chalk.green('\n - A new user connected => id:', userID));
+	// Sending current game list to new connection
+	io.to(userID).emit('newGameAdded', activeGames);
+	socket.on('addNewGame', addNewGameEvent(io));
 });
 
 app.use(cors());
@@ -28,11 +33,6 @@ app.get('/ping', (req, res) => {
 		ping: 'pong',
 	});
 });
-
-// socket.on('connection', (socket) => {
-// 	console.log(chalk.green(' - New user connected'));
-// 	console.log(socket);
-// });
 
 http.listen(PORT, () => {
 	console.log(chalk.green.underline` - Server listening on port ${PORT}`);

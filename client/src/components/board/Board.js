@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-<<<<<<< HEAD
 import { Game } from '../../classes/Game'
 
 import Cemetery from './cemetery/Cemetery'
@@ -12,16 +11,6 @@ import Player from './Player/Player'
 
 import './board.css'
 
-=======
-import './board.css'
-import Cemetery from './cemetery/Cemetery'
-import List from './list/List'
-import Wall from './wall/Wall'
-import { Game } from '../../classes/Game'
-import ActivePlayers from './activePlayers/ActivePlayers'
-import Player from './Player/Player'
-
->>>>>>> 76c6145d111c5b8211a6a1d1b38f5511677e6b56
 export const Board = () => {
     const [numberOfPlayers, setNumberOfPlayers] = useState(3)
     // TODO: save uuid in localStorage and load from it
