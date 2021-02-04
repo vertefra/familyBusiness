@@ -3,7 +3,7 @@ import { socket } from '../../socketio'
 import { v4 as uuidv4 } from 'uuid'
 import './setup.css'
 
-const Setup = () => {
+const Setup = ({ history }) => {
     const [gamesList, updateGameList] = useState({
         activeGames: {},
     })
@@ -14,9 +14,22 @@ const Setup = () => {
     })
 
     // Listening for new games
-    socket.on('newGameAdded', (game) => {
-        console.log("I've got a new gmae")
-        updateGameList(game)
+    socket.on('newGameAdded', (newGame) => {
+        console.log("I've got a new game!")
+        // Check if between the active game there is the game created
+        // if so it means I created the game and will redirect
+        // to the game page
+        const { activeGames } = newGame
+        if (Object.keys(activeGames).includes(game.gameID)) {
+            history.push(`/game/${game.gameID}`)
+        } else {
+            updateGameList(newGame)
+        }
+    })
+
+    // Listening for confirmation of joining a game
+    socket.on('gameJoined', (gameID) => {
+        history.push(`/game/${gameID}`)
     })
 
     const handleChange = (e) => {
@@ -30,8 +43,13 @@ const Setup = () => {
         e.preventDefault()
         const gameID = uuidv4()
         game.gameID = gameID
-        console.log('Emitting new event')
+        setGame(game)
         socket.emit('addNewGame', game)
+    }
+
+    const handleSelectGame = (e) => {
+        const gameID = e.target.id
+        socket.emit('joinGame', gameID)
     }
 
     const { activeGames } = gamesList
@@ -43,7 +61,23 @@ const Setup = () => {
                 {Object.keys(activeGames).length > 0 &&
                     Object.keys(activeGames).map((gameID) => {
                         const game = activeGames[gameID]
-                        return <div id={game.gameID}>{game.gameName}</div>
+                        return (
+                            <div
+                                key={game.gameID}
+                                id={game.gameID}
+                                className="gameSelector"
+                                onClick={handleSelectGame}
+                            >
+                                {game.gameName}
+                                <div
+                                    className={`gameStatus-${
+                                        game.isFull ? 'close' : 'open'
+                                    }`}
+                                >
+                                    {game.isFull ? 'close' : 'open'}
+                                </div>
+                            </div>
+                        )
                     })}
             </div>
             <div className="createGame">

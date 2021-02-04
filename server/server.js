@@ -5,6 +5,7 @@ import { Server } from 'socket.io';
 import chalk from 'chalk';
 import { activeGames } from './Games.js';
 import { addNewGameEvent } from './socketEvents/addNewGameEvent.js';
+import { joinGameEvent } from './socketEvents/joinGameEvent.js';
 
 const app = Express();
 const http = httpServer.Server(app);
@@ -23,7 +24,8 @@ io.on('connection', (socket) => {
 	console.log(chalk.green('\n - A new user connected => id:', userID));
 	// Sending current game list to new connection
 	io.to(userID).emit('newGameAdded', activeGames);
-	socket.on('addNewGame', addNewGameEvent(io));
+	socket.on('addNewGame', addNewGameEvent(io, userID));
+	socket.on('joinGame', joinGameEvent(io, userID));
 });
 
 app.use(cors());

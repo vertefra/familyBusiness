@@ -8,8 +8,12 @@ function App() {
         <div>
             <Router>
                 <Switch>
-                    <Route path="/" component={Setup} />
-                    <Route path="/game" component={Board} />
+                    <Route path="/" exact={true} component={Setup} />
+                    <Route
+                        path="/game/:gameID"
+                        exact={true}
+                        component={Board}
+                    />
                 </Switch>
             </Router>
         </div>

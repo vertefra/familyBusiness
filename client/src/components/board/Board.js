@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import { Game } from '../../classes/Game'
@@ -10,16 +10,24 @@ import ActivePlayers from './activePlayers/ActivePlayers'
 import Player from './Player/Player'
 
 import './board.css'
+import { useParams } from 'react-router-dom'
 
-export const Board = () => {
-    const [numberOfPlayers, setNumberOfPlayers] = useState(3)
+export const Board = ({}) => {
+    const [numberOfPlayers, setNumberOfPlayers] = useState(0)
     // TODO: save uuid in localStorage and load from it
+    const [currentGameID, setCurrentGameID] = useState(undefined)
     const [playerID, setPlayerID] = useState(uuidv4())
     const [currentGame, updateGame] = useState({
         list: [],
         cemetery: [],
         players: [],
     })
+
+    const { gameID } = useParams()
+
+    useEffect(() => {
+        setCurrentGameID(gameID)
+    }, [gameID])
 
     const handleStartNewGame = (e) => {
         const game = new Game({ numberOfPlayers })
@@ -49,10 +57,10 @@ export const Board = () => {
             <h1>Family business board</h1>
             <div className="controllBar">
                 <button onClick={handleStartNewGame}>New Game</button>
-                <label htmlFor="nOfPlayers">Number Of PLayers</label>
+                <label htmlFor="joinedPlayer">Joined Players</label>
                 <input
                     type="number"
-                    id="nOfPlayers"
+                    id="joinedPlayers"
                     value={numberOfPlayers}
                     onChange={handlePLayerUpdate}
                 />

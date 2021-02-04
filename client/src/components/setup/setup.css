@@ -38,3 +38,34 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.gameSelector {
+    border: 1px solid black;
+    width: 200px;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    background-color: darkorange;
+    border-radius: 5px;
+}
+
+.gameStatus-open,
+.gameStatus-close {
+    margin: 5px 0;
+    border: 1px solid black;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.gameStatus-close {
+    background-color: red;
+}
+
+.gameStatus-open {
+    background-color: green;
+}
