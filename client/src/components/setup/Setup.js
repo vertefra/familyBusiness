@@ -1,35 +1,27 @@
-import React, { useState } from 'react'
-import { socket } from '../../socketio'
-import { v4 as uuidv4 } from 'uuid'
+import React, { useEffect, useState } from 'react'
+import { v4 as uuid4 } from 'uuid'
+import { socket } from '../../socket.js'
 import './setup.css'
 
 const Setup = ({ history }) => {
-    const [gamesList, updateGameList] = useState({
-        activeGames: {},
-    })
+    const [userID, setUserID] = useState('')
+    const [activeGamesList, updateActiveGamesList] = useState({})
     const [game, setGame] = useState({
         gameID: '',
         gameName: 'New Game',
         numberOfPlayers: 3,
     })
-
-    // Listening for new games
-    socket.on('newGameAdded', (newGame) => {
-        console.log("I've got a new game!")
-        // Check if between the active game there is the game created
-        // if so it means I created the game and will redirect
-        // to the game page
-        const { activeGames } = newGame
-        if (Object.keys(activeGames).includes(game.gameID)) {
-            history.push(`/game/${game.gameID}`)
-        } else {
-            updateGameList(newGame)
-        }
+    // Socket Listeners
+    socket.on('handshake', ({ userID, activeGames }) => {
+        console.log('welcome => ', userID)
+        setUserID(userID)
+        updateActiveGamesList({ ...activeGames })
     })
 
-    // Listening for confirmation of joining a game
-    socket.on('gameJoined', (gameID) => {
-        history.push(`/game/${gameID}`)
+    socket.on('newGameAdded', (activeGames) => {
+        console.log('new game added: ')
+        console.log('Active games list: ', activeGames)
+        updateActiveGamesList({ ...activeGames })
     })
 
     const handleChange = (e) => {
@@ -40,45 +32,47 @@ const Setup = ({ history }) => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        const gameID = uuidv4()
-        game.gameID = gameID
-        setGame(game)
-        socket.emit('addNewGame', game)
+        game.gameID = uuid4()
+        socket.emit('createGame', game)
+        history.push(`/game/${game.gameID}/${userID}`)
     }
 
     const handleSelectGame = (e) => {
         const gameID = e.target.id
-        socket.emit('joinGame', gameID)
+        history.push(`/game/${gameID}/${userID}`)
     }
 
-    const { activeGames } = gamesList
+    // CleanUp for socket
+
+    useEffect(() => {
+        return () => {
+            socket.off('newGameAdded')
+        }
+    }, [socket])
 
     return (
         <div className="setup">
             <div className="openGamesList">
                 <h1>Open Games</h1>
-                {Object.keys(activeGames).length > 0 &&
-                    Object.keys(activeGames).map((gameID) => {
-                        const game = activeGames[gameID]
-                        return (
-                            <div
-                                key={game.gameID}
-                                id={game.gameID}
-                                className="gameSelector"
-                                onClick={handleSelectGame}
-                            >
-                                {game.gameName}
-                                <div
-                                    className={`gameStatus-${
-                                        game.isFull ? 'close' : 'open'
-                                    }`}
-                                >
-                                    {game.isFull ? 'close' : 'open'}
-                                </div>
+                {Object.keys(activeGamesList).map((gameID) => {
+                    const { gameName, isFull } = activeGamesList[gameID]
+                    const classGameStatus = isFull
+                        ? 'gameStatus-closed'
+                        : 'gameStatus-open'
+                    return (
+                        <div
+                            id={gameID}
+                            className="gameSelector"
+                            key={gameID}
+                            onClick={(e) => !isFull && handleSelectGame(e)}
+                        >
+                            {gameName}
+                            <div className={classGameStatus}>
+                                {isFull ? 'Close' : 'Open'}
                             </div>
-                        )
-                    })}
+                        </div>
+                    )
+                })}
             </div>
             <div className="createGame">
                 <h1>Host a game</h1>
@@ -94,7 +88,7 @@ const Setup = ({ history }) => {
                 <div className="inputField">
                     <label htmlFor="numberOfPlayers">Number of Players</label>
                     <input
-                        type="text"
+                        type="number"
                         id="numberOfPlayers"
                         value={game.numberOfPlayers}
                         onChange={handleChange}

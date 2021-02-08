@@ -32,6 +32,22 @@ class Game {
 		}
 	}
 
+	getPlayers() {
+		return this.players;
+	}
+
+	getJoinedPlayers() {
+		return this.players.length;
+	}
+
+	getMaxPlayers() {
+		return this.numberOfPlayers;
+	}
+
+	findPlayer(playerID) {
+		return this.players.includes(playerID);
+	}
+
 	removePlayer(playerID) {
 		const playerIndex = this.players.indexOf(playerID);
 		if (playerID) {

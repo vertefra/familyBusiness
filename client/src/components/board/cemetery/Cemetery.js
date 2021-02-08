@@ -4,8 +4,9 @@ import './cemetery.css'
 
 import { Card } from '../../graphicComponents/card/Card'
 
-const Cemetery = ({ cemetery }) => {
-    console.log(cemetery)
+const Cemetery = ({ game }) => {
+    const { cemetery } = game
+
     return (
         // nel cimitero .map organizza il render di tutte le carte nell
         // nell'array cimiter. una volta aggiunta una carta la stampa su schermo

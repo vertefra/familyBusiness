@@ -1,17 +1,23 @@
 import './player.css'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Family from './Family'
 import Hand from './Hand'
 
-const Player = ({ game, playerID }) => {
-    const { players } = game
+const Player = ({ game }) => {
+    let player = {
+        mobsterCards: [],
+    }
 
-    const currentPlayer = players.find((p) => p.playerID === playerID)
+    if (game.gameState === 'started') {
+        console.log(game)
+        const currentPlayer = game.players.find((p) => p.userID === game.userID)
+        player = currentPlayer
+    }
 
     return (
         <div className="player">
-            {currentPlayer && <Family mobsters={currentPlayer.mobsterCards} />}
+            <Family mobsters={player.mobsterCards} />
             <Hand />
         </div>
     )

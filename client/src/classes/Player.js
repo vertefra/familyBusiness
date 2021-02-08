@@ -1,9 +1,9 @@
 export class Player {
-    constructor(FamilyClass, playerID) {
+    constructor(FamilyClass) {
         this.mobsterCards = []
         this.hand = []
         this.FamilyClass = FamilyClass
-        this.playerID = playerID
+        this.userID = ''
         this.initFamily()
     }
 

@@ -4,14 +4,12 @@ import httpServer from 'http';
 import { Server } from 'socket.io';
 import chalk from 'chalk';
 import { activeGames } from './Games.js';
-import { addNewGameEvent } from './socketEvents/addNewGameEvent.js';
-import { joinGameEvent } from './socketEvents/joinGameEvent.js';
 
 const app = Express();
 const http = httpServer.Server(app);
 const io = new Server(http, {
 	cors: {
-		origin: 'http://localhost:9000/',
+		origin: '*',
 		methods: ['GET', 'POST'],
 		credentials: true,
 	},
@@ -20,12 +18,39 @@ const io = new Server(http, {
 const PORT = 3000;
 
 io.on('connection', (socket) => {
-	const userID = socket.id;
-	console.log(chalk.green('\n - A new user connected => id:', userID));
-	// Sending current game list to new connection
-	io.to(userID).emit('newGameAdded', activeGames);
-	socket.on('addNewGame', addNewGameEvent(io, userID));
-	socket.on('joinGame', joinGameEvent(io, userID));
+	socket.emit('handshake', {
+		userID: socket.id,
+		activeGames: activeGames.activeGames,
+	});
+
+	socket.on('createGame', (game) => {
+		console.log(chalk.yellow(' \n- New Game Added '));
+		activeGames.addGame({ ...game });
+		socket.broadcast.emit('newGameAdded', activeGames.activeGames);
+	});
+
+	socket.on('joinGame', ({ gameID, userID }) => {
+		console.log(chalk.yellow('\n - Joining a game '));
+		console.log(gameID, userID);
+
+		const currentGame = activeGames.getGame(gameID);
+
+		currentGame.addPlayer(userID);
+
+		const joinedPlayers = currentGame.getJoinedPlayers();
+		const maxPlayers = currentGame.getMaxPlayers();
+		const gameName = currentGame.gameName;
+		const players = currentGame.players;
+		// joining room with id gameID
+
+		socket.join(gameID);
+		io.to(gameID).emit('joinedGame', {
+			players,
+			joinedPlayers,
+			gameName,
+			maxPlayers,
+		});
+	});
 });
 
 app.use(cors());

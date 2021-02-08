@@ -425,12 +425,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
+  var gameID, userID;
+
+  if (localStorage.getItem('game')) {
+    var game = JSON.parse(localStorage.getItem('game'));
+    gameID = game.gameID;
+    userID = game.userID;
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
     path: "/",
+    exact: true,
     component: _components_setup_Setup__WEBPACK_IMPORTED_MODULE_2__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
-    path: "/game",
+    path: "/game/:gameID/:userID",
+    exact: true,
     component: _components_board_Board__WEBPACK_IMPORTED_MODULE_1__.Board
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Redirect, {
+    to: "/game/".concat(gameID, "/").concat(userID)
   }))));
 }
 
@@ -1460,10 +1472,15 @@ var familiesClasses = [_FamilyCards__WEBPACK_IMPORTED_MODULE_3__.NewYorkMob, _Fa
 var Game = /*#__PURE__*/function () {
   function Game(_ref) {
     var _ref$numberOfPlayers = _ref.numberOfPlayers,
-        numberOfPlayers = _ref$numberOfPlayers === void 0 ? 3 : _ref$numberOfPlayers;
+        numberOfPlayers = _ref$numberOfPlayers === void 0 ? 3 : _ref$numberOfPlayers,
+        _ref$gameID = _ref.gameID,
+        gameID = _ref$gameID === void 0 ? '' : _ref$gameID,
+        gameName = _ref.gameName;
 
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Game);
 
+    this.gameID = gameID;
+    this.gameName = gameName;
     this.players = [];
     this.list = [];
     this.cemetery = [];
@@ -1479,12 +1496,16 @@ var Game = /*#__PURE__*/function () {
         // TODO: people being able to decide their family
         var familyClass = familiesClasses[i];
         var player = new _Player__WEBPACK_IMPORTED_MODULE_4__.Player(familyClass);
+        console.log('NEW PLAYER');
+        console.log(player);
         this.players.push(player);
       }
     }
   }, {
-    key: "assignPlayer",
-    value: function assignPlayer(playerID) {
+    key: "assignUserToPlayer",
+    value: function assignUserToPlayer(userID) {
+      console.log('ASSIGNING => ', userID);
+
       var _iterator = _createForOfIteratorHelper(this.players),
           _step;
 
@@ -1492,8 +1513,8 @@ var Game = /*#__PURE__*/function () {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var player = _step.value;
 
-          if (!player.playerID) {
-            player.playerID = playerID;
+          if (!player.userID) {
+            player.userID = userID;
             return true;
           }
         }
@@ -1511,11 +1532,6 @@ var Game = /*#__PURE__*/function () {
       var deck = new _Deck__WEBPACK_IMPORTED_MODULE_2__.Deck();
       deck.initDeck();
       this.gameDeck = deck.deck;
-    }
-  }, {
-    key: "addPlayer",
-    value: function addPlayer(player) {
-      this.players.push(player);
     }
   }]);
 
@@ -1549,13 +1565,13 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var Player = /*#__PURE__*/function () {
-  function Player(FamilyClass, playerID) {
+  function Player(FamilyClass) {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Player);
 
     this.mobsterCards = [];
     this.hand = [];
     this.FamilyClass = FamilyClass;
-    this.playerID = playerID;
+    this.userID = '';
     this.initFamily();
   }
 
@@ -1799,17 +1815,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Board": () => (/* binding */ Board)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
-/* harmony import */ var _classes_Game__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../classes/Game */ "./src/classes/Game.js");
-/* harmony import */ var _cemetery_Cemetery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cemetery/Cemetery */ "./src/components/board/cemetery/Cemetery.js");
-/* harmony import */ var _list_List__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./list/List */ "./src/components/board/list/List.js");
-/* harmony import */ var _wall_Wall__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./wall/Wall */ "./src/components/board/wall/Wall.js");
-/* harmony import */ var _activePlayers_ActivePlayers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./activePlayers/ActivePlayers */ "./src/components/board/activePlayers/ActivePlayers.js");
-/* harmony import */ var _Player_Player__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Player/Player */ "./src/components/board/Player/Player.js");
-/* harmony import */ var _board_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./board.css */ "./src/components/board/board.css");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _classes_Game__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../classes/Game */ "./src/classes/Game.js");
+/* harmony import */ var _cemetery_Cemetery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cemetery/Cemetery */ "./src/components/board/cemetery/Cemetery.js");
+/* harmony import */ var _list_List__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./list/List */ "./src/components/board/list/List.js");
+/* harmony import */ var _wall_Wall__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./wall/Wall */ "./src/components/board/wall/Wall.js");
+/* harmony import */ var _activePlayers_ActivePlayers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./activePlayers/ActivePlayers */ "./src/components/board/activePlayers/ActivePlayers.js");
+/* harmony import */ var _Player_Player__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Player/Player */ "./src/components/board/Player/Player.js");
+/* harmony import */ var _board_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./board.css */ "./src/components/board/board.css");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+
+
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
 
 
 
@@ -1821,78 +1854,119 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Board = function Board() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(3),
-      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
       numberOfPlayers = _useState2[0],
-      setNumberOfPlayers = _useState2[1]; // TODO: save uuid in localStorage and load from it
+      setNumberOfPlayers = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState3, 2),
+      joinedPlayers = _useState4[0],
+      setJoinedPlayers = _useState4[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((0,uuid__WEBPACK_IMPORTED_MODULE_9__.default)()),
-      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState3, 2),
-      playerID = _useState4[0],
-      setPlayerID = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
+    gameName: '',
+    gameID: '',
+    userID: '',
+    numberOfPlayers: numberOfPlayers,
+    players: [],
     list: [],
-    cemetery: [],
-    players: []
+    cemetery: []
   }),
-      _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState5, 2),
+      _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState5, 2),
       currentGame = _useState6[0],
       updateGame = _useState6[1];
 
-  var handleStartNewGame = function handleStartNewGame(e) {
-    var game = new _classes_Game__WEBPACK_IMPORTED_MODULE_2__.Game({
-      numberOfPlayers: numberOfPlayers
+  var gameID, userID;
+  var joined = false;
+
+  if (localStorage.getItem('game')) {
+    var savedGame = JSON.parse(localStorage.getItem('game'));
+    gameID = savedGame.gameID;
+    userID = savedGame.userID;
+    _socket__WEBPACK_IMPORTED_MODULE_10__.socket.io.engine.id = userID;
+  } else {
+    gameID = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useParams)().gameID;
+    userID = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useParams)().userID;
+    console.log(gameID);
+    console.log(userID);
+  }
+
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    if (!joined) {
+      _socket__WEBPACK_IMPORTED_MODULE_10__.socket.emit('joinGame', {
+        userID: userID,
+        gameID: gameID
+      });
+      joined = true;
+    }
+  }, [joined]);
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    updateGame(_objectSpread(_objectSpread({}, currentGame), {}, {
+      gameID: gameID,
+      userID: userID
+    }));
+  }, [gameID, userID]);
+  _socket__WEBPACK_IMPORTED_MODULE_10__.socket.on('joinedGame', function (_ref) {
+    var joinedPlayers = _ref.joinedPlayers,
+        maxPlayers = _ref.maxPlayers,
+        gameName = _ref.gameName,
+        players = _ref.players;
+    setJoinedPlayers(joinedPlayers);
+    setNumberOfPlayers(maxPlayers);
+    updateGame(_objectSpread(_objectSpread({}, currentGame), {}, {
+      gameName: gameName,
+      numberOfPlayers: maxPlayers,
+      players: players
+    }));
+    localStorage.set('game', JSON.stringify(currentGame));
+  });
+
+  var handleStartGame = function handleStartGame() {
+    var gameID = currentGame.gameID,
+        numberOfPlayers = currentGame.numberOfPlayers,
+        players = currentGame.players,
+        gameName = currentGame.gameName;
+    var game = new _classes_Game__WEBPACK_IMPORTED_MODULE_3__.Game({
+      numberOfPlayers: numberOfPlayers,
+      gameID: gameID,
+      gameName: gameName
     });
+    console.log(game);
 
-    if (game.assignPlayer(playerID)) {
-      updateGame(game);
-    } else {
-      throw Error('All players already assigned');
+    var _iterator = _createForOfIteratorHelper(players),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var playerID = _step.value;
+        game.assignUserToPlayer(playerID);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
     }
   };
 
-  var handlePLayerUpdate = function handlePLayerUpdate(e) {
-    if (e.target.value < 3) {
-      setNumberOfPlayers(3);
-      return;
-    }
-
-    if (e.target.value > 6) {
-      setNumberOfPlayers(6);
-      return;
-    }
-
-    setNumberOfPlayers(e.target.value);
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
     className: "wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h1", null, "Family business board"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("h1", null, "Family business: ", currentGame.gameName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
     className: "controllBar"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
-    onClick: handleStartNewGame
-  }, "New Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("label", {
-    htmlFor: "nOfPlayers"
-  }, "Number Of PLayers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
-    type: "number",
-    id: "nOfPlayers",
-    value: numberOfPlayers,
-    onChange: handlePLayerUpdate
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+  }, joinedPlayers === numberOfPlayers && joinedPlayers !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("button", {
+    onClick: handleStartGame
+  }, "New Game") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("h4", null, "Waiting for everyone to join"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("h4", null, "Plyaers:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("span", null, joinedPlayers, " / ", numberOfPlayers))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
     className: "activePlayers"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_activePlayers_ActivePlayers__WEBPACK_IMPORTED_MODULE_6__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_activePlayers_ActivePlayers__WEBPACK_IMPORTED_MODULE_7__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
     className: "executionList"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_wall_Wall__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_list_List__WEBPACK_IMPORTED_MODULE_4__.default, {
-    list: currentGame.list
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_wall_Wall__WEBPACK_IMPORTED_MODULE_6__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_list_List__WEBPACK_IMPORTED_MODULE_5__.default, {
+    game: currentGame
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
     className: "cemeteryContainer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_cemetery_Cemetery__WEBPACK_IMPORTED_MODULE_3__.default, {
-    cemetery: currentGame.cemetery
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Player_Player__WEBPACK_IMPORTED_MODULE_7__.default, {
-    game: currentGame,
-    playerID: playerID
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_cemetery_Cemetery__WEBPACK_IMPORTED_MODULE_4__.default, {
+    game: currentGame
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_Player_Player__WEBPACK_IMPORTED_MODULE_8__.default, {
+    game: currentGame
   })));
 };
 
@@ -1977,15 +2051,11 @@ __webpack_require__.r(__webpack_exports__);
 var Player = function Player(_ref) {
   var game = _ref.game,
       playerID = _ref.playerID;
-  var players = game.players;
-  var currentPlayer = players.find(function (p) {
-    return p.playerID === playerID;
-  });
+  // const { players } = game
+  // const currentPlayer = players.find((p) => p.playerID === playerID)
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: "player"
-  }, currentPlayer && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Family__WEBPACK_IMPORTED_MODULE_2__.default, {
-    mobsters: currentPlayer.mobsterCards
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Hand__WEBPACK_IMPORTED_MODULE_3__.default, null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Hand__WEBPACK_IMPORTED_MODULE_3__.default, null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
@@ -2036,8 +2106,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Cemetery = function Cemetery(_ref) {
-  var cemetery = _ref.cemetery;
-  console.log(cemetery);
+  var game = _ref.game;
+  var cemetery = game.cemetery;
   return (
     /*#__PURE__*/
     // nel cimitero .map organizza il render di tutte le carte nell
@@ -2168,8 +2238,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _socketio__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../socketio */ "./src/socketio.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _socket_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../socket.js */ "./src/socket.js");
 /* harmony import */ var _setup_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./setup.css */ "./src/components/setup/setup.css");
 
 
@@ -2183,27 +2253,40 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-var Setup = function Setup() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
-    activeGames: {}
-  }),
-      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
-      gamesList = _useState2[0],
-      updateGameList = _useState2[1];
+var Setup = function Setup(_ref) {
+  var history = _ref.history;
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
+      userID = _useState2[0],
+      setUserID = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
+      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState3, 2),
+      activeGamesList = _useState4[0],
+      updateActiveGamesList = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
     gameID: '',
     gameName: 'New Game',
     numberOfPlayers: 3
   }),
-      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState3, 2),
-      game = _useState4[0],
-      setGame = _useState4[1]; // Listening for new games
+      _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState5, 2),
+      game = _useState6[0],
+      setGame = _useState6[1]; // Socket Listeners
 
 
-  _socketio__WEBPACK_IMPORTED_MODULE_3__.socket.on('newGameAdded', function (game) {
-    console.log("I've got a new gmae");
-    updateGameList(game);
+  _socket_js__WEBPACK_IMPORTED_MODULE_3__.socket.on('handshake', function (_ref2) {
+    var userID = _ref2.userID,
+        activeGames = _ref2.activeGames;
+    console.log('welcome => ', userID);
+    setUserID(userID);
+    updateActiveGamesList(_objectSpread({}, activeGames));
+  });
+  _socket_js__WEBPACK_IMPORTED_MODULE_3__.socket.on('newGameAdded', function (activeGames) {
+    console.log('new game added: ');
+    console.log('Active games list: ', activeGames);
+    updateActiveGamesList(_objectSpread({}, activeGames));
   });
 
   var handleChange = function handleChange(e) {
@@ -2211,23 +2294,41 @@ var Setup = function Setup() {
   };
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    var gameID = (0,uuid__WEBPACK_IMPORTED_MODULE_5__.default)();
-    game.gameID = gameID;
-    console.log('Emitting new event');
-    _socketio__WEBPACK_IMPORTED_MODULE_3__.socket.emit('addNewGame', game);
+    game.gameID = (0,uuid__WEBPACK_IMPORTED_MODULE_5__.default)();
+    _socket_js__WEBPACK_IMPORTED_MODULE_3__.socket.emit('createGame', game);
+    history.push("/game/".concat(game.gameID, "/").concat(userID));
   };
 
-  var activeGames = gamesList.activeGames;
+  var handleSelectGame = function handleSelectGame(e) {
+    var gameID = e.target.id;
+    history.push("/game/".concat(gameID, "/").concat(userID));
+  }; // CleanUp for socket
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    return function () {
+      _socket_js__WEBPACK_IMPORTED_MODULE_3__.socket.off('newGameAdded');
+    };
+  }, [_socket_js__WEBPACK_IMPORTED_MODULE_3__.socket]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
     className: "setup"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
     className: "openGamesList"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("h1", null, "Open Games"), Object.keys(activeGames).length > 0 && Object.keys(activeGames).map(function (gameID) {
-    var game = activeGames[gameID];
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("h1", null, "Open Games"), Object.keys(activeGamesList).map(function (gameID) {
+    var _activeGamesList$game = activeGamesList[gameID],
+        gameName = _activeGamesList$game.gameName,
+        isFull = _activeGamesList$game.isFull;
+    var classGameStatus = isFull ? 'gameStatus-closed' : 'gameStatus-open';
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
-      id: game.gameID
-    }, game.gameName);
+      id: gameID,
+      className: "gameSelector",
+      key: gameID,
+      onClick: function onClick(e) {
+        return !isFull && handleSelectGame(e);
+      }
+    }, gameName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
+      className: classGameStatus
+    }, isFull ? 'Close' : 'Open'));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
     className: "createGame"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("h1", null, "Host a game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
@@ -2244,7 +2345,7 @@ var Setup = function Setup() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("label", {
     htmlFor: "numberOfPlayers"
   }, "Number of Players"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("input", {
-    type: "text",
+    type: "number",
     id: "numberOfPlayers",
     value: game.numberOfPlayers,
     onChange: handleChange
@@ -2280,10 +2381,10 @@ react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPOR
 
 /***/ }),
 
-/***/ "./src/socketio.js":
-/*!*************************!*\
-  !*** ./src/socketio.js ***!
-  \*************************/
+/***/ "./src/socket.js":
+/*!***********************!*\
+  !*** ./src/socket.js ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2293,12 +2394,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/wrapper.mjs");
 
-var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.default)('http://localhost:3000/', {
-  withCredentials: true
-});
-socket.on('connect', function () {
-  console.log('Connection with server established');
-});
+var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)('http://localhost:3000');
 
 /***/ }),
 
@@ -2851,7 +2947,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".setup {\n    display: flex;\n    align-items: center;\n    justify-content: space-around;\n    margin: auto;\n    width: 90%;\n    height: 100vh;\n    background-color: beige;\n}\n\n.createGame {\n    border: 1px solid black;\n    padding: 15px;\n}\n\n.openGamesList {\n    width: 40%;\n    border: 1px solid black;\n    height: 80vh;\n}\n\n.inputField {\n    background-color: lightgray;\n    padding: 10px;\n    margin: 10px;\n    display: flex;\n    justify-content: space-between;\n}\n\n.inputField label {\n    margin-right: 10px;\n}\n\n.createGame > input {\n    background-color: lightgray;\n    margin: 10px;\n    padding: 10px 5px;\n    border-radius: 5px;\n    cursor: pointer;\n}\n", "",{"version":3,"sources":["webpack://./src/components/setup/setup.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,mBAAmB;IACnB,6BAA6B;IAC7B,YAAY;IACZ,UAAU;IACV,aAAa;IACb,uBAAuB;AAC3B;;AAEA;IACI,uBAAuB;IACvB,aAAa;AACjB;;AAEA;IACI,UAAU;IACV,uBAAuB;IACvB,YAAY;AAChB;;AAEA;IACI,2BAA2B;IAC3B,aAAa;IACb,YAAY;IACZ,aAAa;IACb,8BAA8B;AAClC;;AAEA;IACI,kBAAkB;AACtB;;AAEA;IACI,2BAA2B;IAC3B,YAAY;IACZ,iBAAiB;IACjB,kBAAkB;IAClB,eAAe;AACnB","sourcesContent":[".setup {\n    display: flex;\n    align-items: center;\n    justify-content: space-around;\n    margin: auto;\n    width: 90%;\n    height: 100vh;\n    background-color: beige;\n}\n\n.createGame {\n    border: 1px solid black;\n    padding: 15px;\n}\n\n.openGamesList {\n    width: 40%;\n    border: 1px solid black;\n    height: 80vh;\n}\n\n.inputField {\n    background-color: lightgray;\n    padding: 10px;\n    margin: 10px;\n    display: flex;\n    justify-content: space-between;\n}\n\n.inputField label {\n    margin-right: 10px;\n}\n\n.createGame > input {\n    background-color: lightgray;\n    margin: 10px;\n    padding: 10px 5px;\n    border-radius: 5px;\n    cursor: pointer;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".setup {\n    display: flex;\n    align-items: center;\n    justify-content: space-around;\n    margin: auto;\n    width: 90%;\n    height: 100vh;\n    background-color: beige;\n}\n\n.createGame {\n    border: 1px solid black;\n    padding: 15px;\n}\n\n.openGamesList {\n    width: 40%;\n    border: 1px solid black;\n    height: 80vh;\n}\n\n.inputField {\n    background-color: lightgray;\n    padding: 10px;\n    margin: 10px;\n    display: flex;\n    justify-content: space-between;\n}\n\n.inputField label {\n    margin-right: 10px;\n}\n\n.createGame > input {\n    background-color: lightgray;\n    margin: 10px;\n    padding: 10px 5px;\n    border-radius: 5px;\n    cursor: pointer;\n}\n\n.gameSelector {\n    border: 1px solid black;\n    width: 200px;\n    padding: 10px 0;\n    text-align: center;\n    cursor: pointer;\n    background-color: darkorange;\n    border-radius: 5px;\n}\n\n.gameStatus-open,\n.gameStatus-closed {\n    margin: 5px 0;\n    border: 1px solid black;\n    border-radius: 50px;\n    width: 50px;\n    height: 50px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    pointer-events: none;\n}\n\n.gameStatus-closed {\n    background-color: red;\n}\n\n.gameStatus-open {\n    background-color: green;\n}\n", "",{"version":3,"sources":["webpack://./src/components/setup/setup.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,mBAAmB;IACnB,6BAA6B;IAC7B,YAAY;IACZ,UAAU;IACV,aAAa;IACb,uBAAuB;AAC3B;;AAEA;IACI,uBAAuB;IACvB,aAAa;AACjB;;AAEA;IACI,UAAU;IACV,uBAAuB;IACvB,YAAY;AAChB;;AAEA;IACI,2BAA2B;IAC3B,aAAa;IACb,YAAY;IACZ,aAAa;IACb,8BAA8B;AAClC;;AAEA;IACI,kBAAkB;AACtB;;AAEA;IACI,2BAA2B;IAC3B,YAAY;IACZ,iBAAiB;IACjB,kBAAkB;IAClB,eAAe;AACnB;;AAEA;IACI,uBAAuB;IACvB,YAAY;IACZ,eAAe;IACf,kBAAkB;IAClB,eAAe;IACf,4BAA4B;IAC5B,kBAAkB;AACtB;;AAEA;;IAEI,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,WAAW;IACX,YAAY;IACZ,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,oBAAoB;AACxB;;AAEA;IACI,qBAAqB;AACzB;;AAEA;IACI,uBAAuB;AAC3B","sourcesContent":[".setup {\n    display: flex;\n    align-items: center;\n    justify-content: space-around;\n    margin: auto;\n    width: 90%;\n    height: 100vh;\n    background-color: beige;\n}\n\n.createGame {\n    border: 1px solid black;\n    padding: 15px;\n}\n\n.openGamesList {\n    width: 40%;\n    border: 1px solid black;\n    height: 80vh;\n}\n\n.inputField {\n    background-color: lightgray;\n    padding: 10px;\n    margin: 10px;\n    display: flex;\n    justify-content: space-between;\n}\n\n.inputField label {\n    margin-right: 10px;\n}\n\n.createGame > input {\n    background-color: lightgray;\n    margin: 10px;\n    padding: 10px 5px;\n    border-radius: 5px;\n    cursor: pointer;\n}\n\n.gameSelector {\n    border: 1px solid black;\n    width: 200px;\n    padding: 10px 0;\n    text-align: center;\n    cursor: pointer;\n    background-color: darkorange;\n    border-radius: 5px;\n}\n\n.gameStatus-open,\n.gameStatus-closed {\n    margin: 5px 0;\n    border: 1px solid black;\n    border-radius: 50px;\n    width: 50px;\n    height: 50px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    pointer-events: none;\n}\n\n.gameStatus-closed {\n    background-color: red;\n}\n\n.gameStatus-open {\n    background-color: green;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -42852,22 +42948,7 @@ module.exports = __webpack_require__.p + "f9fdd70ce35c1c7a4d5b.png";
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 		__webpack_require__.p = "/";
 /******/ 	})();
 /******/ 	
 /************************************************************************/
