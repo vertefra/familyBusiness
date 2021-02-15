@@ -1,0 +1,105 @@
+.card {
+    width: 50px;
+    height: 90px;
+    margin: 2px;
+    position: relative;
+    border-radius: 5px;
+    border: 2px solid blanchedalmond;
+    cursor: pointer;
+    z-index: 0;
+    padding: 5px;
+}
+
+.card:hover {
+    transform: scale(3.2);
+    bottom: 130px;
+    right: 50px;
+    z-index: 1;
+}
+
+.card:hover .actionCardName {
+    font-size: 5px;
+    margin-top: 2px;
+}
+
+.card:hover .cardDescription {
+    display: inline-block;
+    font-size: 4px;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cardContent header {
+    width: 100%;
+    padding: 1px 0;
+    font-size: 8px;
+    font-weight: 900;
+    text-transform: capitalize;
+    border-bottom: 1px solid blanchedalmond;
+}
+
+.cardContent h4 {
+    font-size: 8px;
+    margin: 10px auto;
+    height: 100%;
+}
+
+.cardContent small {
+    position: absolute;
+    font-size: 8px;
+    bottom: 0;
+}
+
+/* Tweaks for action cards */
+
+.actionCardName {
+    margin: 2px auto;
+}
+
+.cardDescription {
+    display: none;
+    position: fixed;
+    height: 48%;
+    margin: auto 5px;
+    font-weight: bold;
+    text-align: justify;
+    line-height: 4px;
+}
+
+/* Card colors for gangs*/
+
+.red {
+    background-color: red;
+}
+
+.black {
+    background-color: black;
+    color: white;
+}
+
+.purple {
+    background-color: purple;
+}
+
+/* Card Color for types (counter, attack, rescue */
+
+.attack {
+    background-color: brown;
+}
+
+.counter {
+    background-color: blue;
+}
+
+.rescue {
+    background-color: darkgreen;
+}

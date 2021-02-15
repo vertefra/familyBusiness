@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
-import { Deck } from '../classes/Deck'
 import { socket } from '../socket'
 import {
+    handleGameStarted,
     handleHandshake,
     handleJoined,
     handleUpdateGameList,
@@ -11,6 +11,7 @@ import GamesList from './GamesList'
 
 import './board.css'
 import Header from './header/Header'
+import Player from './Player/Player'
 
 const Board = () => {
     const [userID, setUserID] = useState('')
@@ -22,25 +23,83 @@ const Board = () => {
     const [opponentsIDs, setOpponentsIDs] = useState([])
     const [joined, setJoined] = useState(false)
 
-    const [executionList, setExecutionList] = useState([])
-    const [executionWall, setExecutionWall] = useState('')
-    const [cemetery, setCemetery] = useState([])
-    const [deck, setDeck] = useState([])
-    const [isWar, setIsWar] = useState(false)
+    const [gameObject, setGameObject] = useState({
+        gameID: '',
+        gameState: 'waiting',
+        players: [],
+        initPlayers: [],
+        executionList: [],
+        executionWall: null,
+        cemetery: [],
+        deck: [],
+        isWar: false,
+    })
 
-    const [hand, setHand] = useState([])
-    const [mobsters, setMobsters] = useState([])
+    const [player, setPlayer] = useState({
+        playerID: '',
+        hand: [],
+        mobsters: [],
+        family: '',
+        playerTurn: false,
+    })
+
+    const [opponentPlayers, setOpponentPlayers] = useState([])
 
     socket.on('updateGameList', handleUpdateGameList(setGamesList))
-    socket.on('handshake', handleHandshake(setUserID, setGamesList))
+
+    useEffect(() => {
+        socket.on('handshake', handleHandshake(setUserID, setGamesList))
+        return () => socket.off('handshake')
+    }, [])
 
     useEffect(() => {
         socket.on(
             'joined',
-            handleJoined(setGameID, setGameName, setOpponentsIDs, userID)
+            handleJoined({
+                setGameID,
+                setGameName,
+                setOpponentsIDs,
+                setUserID,
+                userID,
+            })
         )
         return () => socket.off('joined')
     }, [joined])
+
+    useEffect(() => {
+        socket.on('gameStarted', handleGameStarted(gameObject, setGameObject))
+        return () => socket.off('gameStarted')
+    }, [])
+
+    useEffect(() => {
+        if (gameObject.gameState === 'playing') {
+            // find player
+            const thisPlayer = gameObject.initPlayers.find(
+                (p) => p.playerID === userID
+            )
+            if (!thisPlayer) {
+                throw Error("Can't find the player")
+            }
+
+            setPlayer(thisPlayer)
+
+            // set opponents
+
+            const theseOpponents = gameObject.initPlayers.filter(
+                (p) => p.playerID !== userID
+            )
+
+            setOpponentPlayers(theseOpponents)
+        }
+    }, [gameObject])
+
+    console.log('======================')
+    console.log('|     GAME STATUS    |')
+    console.log('======================')
+
+    console.log(gameObject)
+
+    console.log(player)
 
     return (
         <div className="board">
@@ -56,10 +115,13 @@ const Board = () => {
             <div className="game">
                 <Header
                     gameID={gameID}
+                    userID={userID}
                     opponentsIDs={opponentsIDs}
                     gameName={gameName}
                     numberOfPlayers={numberOfPlayers}
+                    gameState={gameObject.gameState}
                 />
+                <Player player={player} />
             </div>
         </div>
     )

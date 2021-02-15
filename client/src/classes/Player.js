@@ -1,7 +1,24 @@
+import { v4 as uuid4 } from 'uuid'
+
 export class Player {
-    constructor() {
-        this.playerID = ''
+    constructor(playerID, familyObj) {
+        this.playerID = playerID
+        this.family = familyObj
         this.hand = []
         this.mobsters = []
+        this.playerTurn = false
+    }
+
+    initFamily() {
+        for (let mobster of this.family.mobsters) {
+            const mobsterObj = {
+                name: mobster,
+                color: this.family.color,
+                family: this.family.familyName,
+                cardID: uuid4(),
+            }
+
+            this.mobsters.push(mobsterObj)
+        }
     }
 }

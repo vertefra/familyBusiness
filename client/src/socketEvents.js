@@ -11,18 +11,30 @@ export const handleUpdateGameList = (setGamesList) => {
     }
 }
 
-export const handleJoined = (
+export const handleJoined = ({
     setGameID,
     setGameName,
+    setUserID,
     setOpponentsIDs,
-    userID
-) => {
+    userID,
+}) => {
     return (gameToJoin) => {
         const { gameID, gameName, players } = gameToJoin
+        const opponenentsIDs = players.filter((p) => p !== userID)
         setGameID(gameID)
         setGameName(gameName)
-
-        const opponenentsIDs = players.filter((p) => p !== userID)
+        setUserID(userID)
         setOpponentsIDs([...opponenentsIDs])
+    }
+}
+
+export const handleGameStarted = (gameObject, setGameObject) => {
+    return (game) => {
+        console.log('Socket game event')
+        console.log(game)
+        setGameObject({
+            ...gameObject,
+            ...game,
+        })
     }
 }

@@ -18,6 +18,15 @@ const PORT = 3000;
 
 const games = {};
 
+// samble of gameObject with key gameID
+
+// const game = {
+// 	gameName: "",
+// 	numberOfPlayers: 3,
+// 	players: ["id1", "id2", "id3"],
+// 	deck: [cardObj, cardObj2 ...]
+// }
+
 io.on('connection', (socket) => {
 	console.log(
 		chalk.yellow.underline('\n -  New user connected => ', socket.id)
@@ -41,6 +50,7 @@ io.on('connection', (socket) => {
 			if (!gameToJoin) {
 				games[gameID] = {
 					gameName,
+					gameID,
 					numberOfPlayers,
 					players: [userID],
 				};
@@ -56,16 +66,40 @@ io.on('connection', (socket) => {
 		}
 	);
 
+	socket.on('startGame', ({ gameID, deck, initPlayers }) => {
+		const gameToStart = games[gameID];
+
+		gameToStart.initPlayers = [...initPlayers];
+		gameToStart.deck = deck.deck;
+		gameToStart.executionList = [];
+		gameToStart.executionWall = null;
+		gameToStart.cemetery = [];
+		gameToStart.isWar = false;
+		gameToStart.gameState = 'playing';
+
+		io.to(gameID).emit('gameStarted', gameToStart);
+	});
+
 	socket.on('disconnect', () => {
 		const playerID = socket.id;
-		console.log(chalk.yellow(` - Player ${playerID} disconnected`));
+		console.log(chalk.yellow(`\n - Player ${playerID} disconnected`));
 		for (let gameID in games) {
 			const game = games[gameID];
-			const user = game.players.find((p) => p === playerID);
-			console.log(chalk.yellow('\nUser found --> ', user));
-			if (user) {
-				console.log(chalk.yellow(`User found in game`));
-				console.log(game);
+			const idx = game.players.findIndex((p) => p === playerID);
+			console.log(chalk.red('\nINDEX ==> ', idx));
+			if (idx !== undefined || idx !== null) {
+				game.players.splice(idx, 1);
+				console.log(chalk.yellow(' - player removed from game'));
+				const idxObj = game.initPlayers?.findIndex(
+					(p) => idx.playerID === playerID
+				);
+				if (idxObj) {
+					game.initPlayers.splice(idxObj, 1);
+				}
+			}
+
+			if (game.players.length === 0) {
+				console.log(chalk.yellow('No more players. Removing game'));
 				delete games[gameID];
 			}
 		}

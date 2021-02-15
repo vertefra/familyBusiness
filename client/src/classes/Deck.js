@@ -1,3 +1,4 @@
+import { v4 as uuid4 } from 'uuid'
 import {
     contractDescription,
     doubleContractDescription,
@@ -56,6 +57,7 @@ export class Card {
         this.description = description
         this.type = type
         this.effect = effect
+        this.cardID = uuid4()
     }
 }
 
@@ -77,6 +79,13 @@ export class Deck {
             const holder = deck[newIndex]
             deck[newIndex] = deck[index]
             deck[index] = holder
+        }
+    }
+
+    static serve(deck = [], player, numberOfCards = 5) {
+        for (let i = 1; i <= numberOfCards; i++) {
+            const cardToServe = deck.pop()
+            player.hand.push(cardToServe)
         }
     }
 

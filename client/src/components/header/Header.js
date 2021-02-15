@@ -1,4 +1,8 @@
 import React from 'react'
+import { Deck } from '../../classes/Deck'
+import { MurderInc, newYorkMob, PurpleGang } from '../../classes/families'
+import { Player } from '../../classes/Player'
+import { socket } from '../../socket'
 
 import './header.css'
 
@@ -8,8 +12,39 @@ const Header = ({
     opponentsIDs,
     gameName,
     numberOfPlayers,
+    gameState,
 }) => {
     const partecipants = 1 + opponentsIDs.length
+    console.log(gameID, userID, opponentsIDs, numberOfPlayers, gameName)
+    const handleStartGame = () => {
+        // Creating Players and assigning random families
+        const families = [MurderInc, newYorkMob, PurpleGang]
+        const playersIDs = [userID, ...opponentsIDs]
+        const initPlayers = []
+
+        for (let playerID of playersIDs) {
+            const ranIndex = Math.floor(Math.random() * families.length)
+            const familyObj = families.splice(ranIndex, 1)
+            console.log('====== assigned family')
+            console.log(familyObj)
+            const p = new Player(playerID, familyObj[0])
+            p.initFamily()
+            initPlayers.push(p)
+        }
+
+        const deck = new Deck()
+        deck.createDeck()
+        Deck.shuffle(deck.deck)
+
+        for (let playerObj of initPlayers) {
+            Deck.serve(deck.deck, playerObj)
+        }
+
+        console.log(initPlayers)
+
+        socket.emit('startGame', { gameID, deck, initPlayers })
+    }
+
     return (
         <div className="header">
             <div className="datafield">
@@ -53,11 +88,14 @@ const Header = ({
                 ></input>
             </div>
             <div className="datadfield">
-                {numberOfPlayers === partecipants ? (
-                    <button>Start The Game</button>
-                ) : (
-                    'Waiting for players to join....'
-                )}
+                {numberOfPlayers === partecipants &&
+                    gameState !== 'playing' && (
+                        <button onClick={handleStartGame}>
+                            Start The Game
+                        </button>
+                    )}
+                {numberOfPlayers !== partecipants &&
+                    'Waiting for players to join...'}
             </div>
         </div>
     )
