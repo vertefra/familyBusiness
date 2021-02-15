@@ -3,7 +3,6 @@ import cors from 'cors';
 import httpServer from 'http';
 import { Server } from 'socket.io';
 import chalk from 'chalk';
-import { activeGames } from './Games.js';
 
 const app = Express();
 const http = httpServer.Server(app);
@@ -17,39 +16,62 @@ const io = new Server(http, {
 
 const PORT = 3000;
 
+const games = {};
+
 io.on('connection', (socket) => {
+	console.log(
+		chalk.yellow.underline('\n -  New user connected => ', socket.id)
+	);
 	socket.emit('handshake', {
 		userID: socket.id,
-		activeGames: activeGames.activeGames,
+		games,
 	});
 
-	socket.on('createGame', (game) => {
-		console.log(chalk.yellow(' \n- New Game Added '));
-		activeGames.addGame({ ...game });
-		socket.broadcast.emit('newGameAdded', activeGames.activeGames);
-	});
+	socket.on(
+		'gameJoin',
+		({
+			gameID,
+			newGameName: gameName,
+			newGameNumberOfPlayers: numberOfPlayers,
+			userID,
+		}) => {
+			const gameToJoin = games[gameID];
 
-	socket.on('joinGame', ({ gameID, userID }) => {
-		console.log(chalk.yellow('\n - Joining a game '));
-		console.log(gameID, userID);
+			// If game sdoes not exists
+			if (!gameToJoin) {
+				games[gameID] = {
+					gameName,
+					numberOfPlayers,
+					players: [userID],
+				};
+			} else {
+				// else just add the player to the players list
+				const players = [...gameToJoin.players, userID];
+				gameToJoin.players = [...players];
+			}
 
-		const currentGame = activeGames.getGame(gameID);
+			socket.broadcast.emit('updateGameList', games);
+			socket.join(gameID);
+			io.to(gameID).emit('joined', games[gameID]);
+		}
+	);
 
-		currentGame.addPlayer(userID);
-
-		const joinedPlayers = currentGame.getJoinedPlayers();
-		const maxPlayers = currentGame.getMaxPlayers();
-		const gameName = currentGame.gameName;
-		const players = currentGame.players;
-		// joining room with id gameID
-
-		socket.join(gameID);
-		io.to(gameID).emit('joinedGame', {
-			players,
-			joinedPlayers,
-			gameName,
-			maxPlayers,
-		});
+	socket.on('disconnect', () => {
+		const playerID = socket.id;
+		console.log(chalk.yellow(` - Player ${playerID} disconnected`));
+		for (let gameID in games) {
+			const game = games[gameID];
+			const user = game.players.find((p) => p === playerID);
+			console.log(chalk.yellow('\nUser found --> ', user));
+			if (user) {
+				console.log(chalk.yellow(`User found in game`));
+				console.log(game);
+				delete games[gameID];
+			}
+		}
+		console.log(chalk.yellow('\n New games list'));
+		console.log(games);
+		socket.broadcast.emit('updateGameList', games);
 	});
 });
 

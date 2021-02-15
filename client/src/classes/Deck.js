@@ -1,148 +1,244 @@
 import {
-    Ambush,
-    Contract,
-    DoubleContract,
-    DoubleCross,
-    Hit,
-    MobWar,
-    PriorityContract,
-    StValentineMassacre,
-    TurnCoat,
-} from './AttackCards'
-import { FamilyInfluence, Finger, MobPower, SafeHouse } from './CounterCards'
+    contractDescription,
+    doubleContractDescription,
+    priorityContractDescription,
+    hitDescription,
+    stValentinedescription,
+    doubleCrossdescription,
+    mobWarDescription,
+    ambushDescription,
+    turnCoatDescription,
+} from '../assets/cardDescriptions/attackCards'
+
 import {
-    FederalCrackdown,
-    Intrigue,
-    PayOff,
-    TakeItOntheLam,
-    PoliceProtection,
-    Truce,
-    Substitution,
-} from './RescueCards'
+    mobPowerdescription,
+    fingerDescription,
+    familyInfluenceDescription,
+    safeHouseDescription,
+} from '../assets/cardDescriptions/counterCards'
+
+import {
+    takeItOnTheLamDescription,
+    policeProtectionDescription,
+    substitutionDescription,
+    intrigueDescription,
+    truceDescription,
+    payOffDescription,
+    FederalCrackdownDescription,
+} from '../assets/cardDescriptions/rescueCards'
+
+const cardList = {
+    contracts: 18,
+    priorityContracts: 3,
+    doubleContracts: 3,
+    hits: 1,
+    stValentineMassacre: 1,
+    doubleCross: 1,
+    mobWar: 1,
+    ambush: 1,
+    turnCoat: 1,
+    takeItOnTheLams: 4,
+    policeProtections: 4,
+    substitutions: 2,
+    intrigues: 2,
+    truce: 1,
+    payOff: 1,
+    federalCrackdown: 1,
+    mobPower: 3,
+    familyInfluence: 6,
+    finger: 2,
+    safeHouse: 1,
+}
+
+export class Card {
+    constructor({ name, description, type, effect }) {
+        this.name = name
+        this.description = description
+        this.type = type
+        this.effect = effect
+    }
+}
 
 export class Deck {
     constructor() {
-        this.contracts = 18
-        this.priorityContracts = 3
-        this.doubleContracts = 3
-        this.hits = 1
-        this.stValentineMassacre = 1
-        this.doubleCross = 1
-        this.mobWar = 1
-        this.ambush = 1
-        this.turnCoat = 1
-        this.takeItOnTheLams = 4
-        this.policeProtections = 4
-        this.substitutions = 2
-        this.intrigues = 2
-        this.truce = 1
-        this.payOff = 1
-        this.federalCrackdown = 1
-        this.mobPower = 3
-        this.familyInfluence = 6
-        this.finger = 2
-        this.safeHouse = 1
         this.deck = []
     }
 
-    initDeck() {
-        for (let i = 1; i <= this.contracts; i++) {
-            const card = new Contract()
+    generateCards({ name, description, type, effect, quantity }) {
+        for (let i = 1; i <= quantity; i++) {
+            const card = new Card({ name, description, type, effect })
             this.deck.push(card)
         }
-        for (let i = 1; i <= this.priorityContracts; i++) {
-            const card = new PriorityContract()
-            this.deck.push(card)
-        }
+    }
 
-        for (let i = 1; i <= this.doubleContracts; i++) {
-            const card = new DoubleContract()
-            this.deck.push(card)
+    static shuffle(deck = []) {
+        for (let index in deck) {
+            const newIndex = Math.floor(Math.random() * deck.length)
+            const holder = deck[newIndex]
+            deck[newIndex] = deck[index]
+            deck[index] = holder
         }
+    }
 
-        for (let i = 1; i <= this.hits; i++) {
-            const card = new Hit()
-            this.deck.push(card)
+    getDescriptionAndType(cardType) {
+        switch (cardType) {
+            case 'contracts':
+                return {
+                    description: contractDescription,
+                    type: 'attack',
+                }
+
+            case 'priorityContracts':
+                return {
+                    description: priorityContractDescription,
+                    type: 'attack',
+                }
+
+            case 'doubleContracts':
+                return {
+                    description: doubleContractDescription,
+                    type: 'attack',
+                }
+
+            case 'hits':
+                return {
+                    description: hitDescription,
+                    type: 'attack',
+                }
+
+            case 'stValentineMassacre':
+                return {
+                    description: stValentinedescription,
+                    type: 'attack',
+                }
+
+            case 'doubleCross':
+                return {
+                    description: doubleCrossdescription,
+                    type: 'attack',
+                }
+
+            case 'mobWar':
+                return {
+                    description: mobWarDescription,
+                    type: 'attack',
+                }
+
+            case 'ambush':
+                return {
+                    description: ambushDescription,
+                    type: 'attack',
+                }
+
+            case 'turnCoat':
+                return {
+                    description: turnCoatDescription,
+                    type: 'attack',
+                }
+
+            case 'takeItOnTheLams':
+                return {
+                    description: takeItOnTheLamDescription,
+                    type: 'rescue',
+                }
+
+            case 'policeProtections':
+                return {
+                    description: policeProtectionDescription,
+                    type: 'rescue',
+                }
+
+            case 'substitutions':
+                return {
+                    description: substitutionDescription,
+                    type: 'rescue',
+                }
+
+            case 'intrigues':
+                return {
+                    description: intrigueDescription,
+                    type: 'rescue',
+                }
+
+            case 'truce':
+                return {
+                    description: truceDescription,
+                    type: 'rescue',
+                }
+
+            case 'payOff':
+                return {
+                    description: payOffDescription,
+                    type: 'rescue',
+                }
+
+            case 'federalCrackdown':
+                return {
+                    description: FederalCrackdownDescription,
+                    type: 'rescue',
+                }
+
+            case 'mobPower':
+                return {
+                    description: mobPowerdescription,
+                    type: 'counter',
+                }
+
+            case 'familyInfluence':
+                return {
+                    description: familyInfluenceDescription,
+                    type: 'counter',
+                }
+
+            case 'finger':
+                return {
+                    description: fingerDescription,
+                    type: 'counter',
+                }
+
+            case 'safeHouse':
+                return {
+                    description: safeHouseDescription,
+                    type: 'counter',
+                }
+
+            default:
+                return undefined
         }
+    }
 
-        for (let i = 1; i <= this.stValentineMassacre; i++) {
-            const card = new StValentineMassacre()
-            this.deck.push(card)
+    formatCardName(objectName) {
+        let formattedString = ''
+        let index = 0
+        for (let l of objectName) {
+            if (index === 0) {
+                l = l.toUpperCase()
+            }
+
+            if (
+                objectName[index + 1] &&
+                objectName[index] === objectName[index].toUpperCase()
+            ) {
+                // Test if the next letter is uppercase. if it is add a space
+                formattedString += ' '
+            }
+
+            if (index === objectName.length - 1 && objectName[index] === 's') {
+                return formattedString
+            }
+
+            formattedString += l
+            index++
         }
+        return formattedString
+    }
 
-        for (let i = 1; i <= this.doubleCross; i++) {
-            const card = new DoubleCross()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.mobWar; i++) {
-            const card = new MobWar()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.ambush; i++) {
-            const card = new Ambush()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.turnCoat; i++) {
-            const card = new TurnCoat()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.takeItOnTheLams; i++) {
-            const card = new TakeItOntheLam()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.policeProtections; i++) {
-            const card = new PoliceProtection()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.substitutions; i++) {
-            const card = new Substitution()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.intrigues; i++) {
-            const card = new Intrigue()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.truce; i++) {
-            const card = new Truce()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.payOff; i++) {
-            const card = new PayOff()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.federalCrackdown; i++) {
-            const card = new FederalCrackdown()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.mobPower; i++) {
-            const card = new MobPower()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.familyInfluence; i++) {
-            const card = new FamilyInfluence()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.finger; i++) {
-            const card = new Finger()
-            this.deck.push(card)
-        }
-
-        for (let i = 1; i <= this.safeHouse; i++) {
-            const card = new SafeHouse()
-            this.deck.push(card)
+    createDeck() {
+        for (let cardType in cardList) {
+            const name = this.formatCardName(cardType)
+            const { description, type } = this.getDescriptionAndType(cardType)
+            const quantity = cardList[cardType]
+            this.generateCards({ name, description, type, quantity })
         }
     }
 }

@@ -1,12 +1,11 @@
 import React from 'react'
-import { Board } from './components/board/Board'
+import Board from './components/Board'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Redirect,
 } from 'react-router-dom'
-import Setup from './components/setup/Setup'
 
 function App() {
     let gameID, userID
@@ -20,7 +19,7 @@ function App() {
         <div>
             <Router>
                 <Switch>
-                    <Route path="/" exact={true} component={Setup} />
+                    {/* <Route path="/" exact={true} component={Setup} /> */}
                     <Route
                         path="/game/:gameID/:userID"
                         exact={true}

@@ -1,0 +1,12 @@
+.gamesList {
+    border: 1px solid black;
+    text-align: center;
+    height: 90vh;
+}
+
+.gameInGameList {
+    border: 1px solid black;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
