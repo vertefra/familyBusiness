@@ -1,0 +1,7 @@
+.opponents {
+    display: flex;
+    justify-content: space-evenly;
+    height: 20vh;
+    margin-top: 4vh;
+    width: 100%;
+}

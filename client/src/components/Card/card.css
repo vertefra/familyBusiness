@@ -1,13 +1,15 @@
+/* basic card cofniguration */
+
 .card {
     width: 50px;
     height: 90px;
     margin: 2px;
-    position: relative;
     border-radius: 5px;
     border: 2px solid blanchedalmond;
     cursor: pointer;
     z-index: 0;
     padding: 5px;
+    position: relative;
 }
 
 .card:hover {
@@ -30,6 +32,8 @@
     top: 0;
     right: 0;
 }
+
+/* Mobster card config */
 
 .cardContent {
     display: flex;
@@ -75,6 +79,12 @@
     line-height: 4px;
 }
 
+/* Card back if it's opponent card */
+
+.backCard {
+    background-color: black;
+}
+
 /* Card colors for gangs*/
 
 .red {
@@ -102,4 +112,15 @@
 
 .rescue {
     background-color: darkgreen;
+}
+
+/* rescaling for opponent cards*/
+
+.opponentCard {
+    transform: scale(0.6);
+}
+
+.opponentCard:hover {
+    position: relative;
+    bottom: -60px;
 }

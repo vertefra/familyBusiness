@@ -35,6 +35,22 @@ module.exports = _arrayWithHoles;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
@@ -74,6 +90,31 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
 
 /***/ }),
 
@@ -155,6 +196,20 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
@@ -206,6 +261,20 @@ module.exports = _nonIterableRest;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/slicedToArray.js":
 /*!**************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
@@ -225,6 +294,28 @@ function _slicedToArray(arr, i) {
 }
 
 module.exports = _slicedToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
 
 /***/ }),
 
@@ -387,6 +478,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 /* harmony import */ var _assets_cardDescriptions_attackCards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/cardDescriptions/attackCards */ "./src/assets/cardDescriptions/attackCards.js");
 /* harmony import */ var _assets_cardDescriptions_counterCards__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../assets/cardDescriptions/counterCards */ "./src/assets/cardDescriptions/counterCards.js");
 /* harmony import */ var _assets_cardDescriptions_rescueCards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../assets/cardDescriptions/rescueCards */ "./src/assets/cardDescriptions/rescueCards.js");
@@ -398,6 +490,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symb
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -436,6 +529,7 @@ var Card = function Card(_ref) {
   this.description = description;
   this.type = type;
   this.effect = effect;
+  this.cardID = (0,uuid__WEBPACK_IMPORTED_MODULE_5__.default)();
 };
 var Deck = /*#__PURE__*/function () {
   function Deck() {
@@ -659,10 +753,120 @@ var Deck = /*#__PURE__*/function () {
         deck[index] = holder;
       }
     }
+  }, {
+    key: "serve",
+    value: function serve() {
+      var deck = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      var player = arguments.length > 1 ? arguments[1] : undefined;
+      var numberOfCards = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 5;
+
+      for (var i = 1; i <= numberOfCards; i++) {
+        var cardToServe = deck.pop();
+        player.hand.push(cardToServe);
+      }
+    }
   }]);
 
   return Deck;
 }();
+
+/***/ }),
+
+/***/ "./src/classes/Player.js":
+/*!*******************************!*\
+  !*** ./src/classes/Player.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Player": () => (/* binding */ Player)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+
+
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+var Player = /*#__PURE__*/function () {
+  function Player(playerID, familyObj) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Player);
+
+    this.playerID = playerID;
+    this.family = familyObj;
+    this.hand = [];
+    this.mobsters = [];
+    this.playerTurn = false;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Player, [{
+    key: "initFamily",
+    value: function initFamily() {
+      var _iterator = _createForOfIteratorHelper(this.family.mobsters),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var mobster = _step.value;
+          var mobsterObj = {
+            name: mobster,
+            color: this.family.color,
+            family: this.family.familyName,
+            cardID: (0,uuid__WEBPACK_IMPORTED_MODULE_2__.default)()
+          };
+          this.mobsters.push(mobsterObj);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+  }]);
+
+  return Player;
+}();
+
+/***/ }),
+
+/***/ "./src/classes/families.js":
+/*!*********************************!*\
+  !*** ./src/classes/families.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "newYorkMob": () => (/* binding */ newYorkMob),
+/* harmony export */   "MurderInc": () => (/* binding */ MurderInc),
+/* harmony export */   "PurpleGang": () => (/* binding */ PurpleGang)
+/* harmony export */ });
+var newYorkMob = {
+  familyName: 'New York Mob',
+  color: 'red',
+  mobsters: ["Dutch Shultz", "Frank Castello", "Meyer Lansky", "Vito Genovese", "Albert \"The Executioner\" Anastasia", "Benjamin \"Bugsy\" Siegel", "Joseph \"Joe Bananas\" Bonanno", "Joe Valachi", "Charles \"Lucky\" Luciano"]
+};
+var MurderInc = {
+  familyName: 'Murder Inc',
+  color: 'black',
+  mobsters: ["Harry \"Pittsburgh Phil\" Strauss", "Abraham \"Kid Twist\" Reles", "Irwing \"Knadles\" Nitzberg", "Frank \"The Dasher\" Abbendado", "Martin \"Bugsy\" Goldstein", "Harry \"Happy\" Maione", "Anthony \"The Duke\" Maffettore", "Albert \"Allie Tick Tock\" Tannenbaum", "Abraham \"Pretty\" Levine"]
+};
+var PurpleGang = {
+  familyName: "Purple Gang",
+  color: 'purple',
+  mobsters: ["Samuel \"Sammy Purple\" Cohen", "Abe Axler", "Peter Licavoli", "Joseph Zerlli", "Harry Fleisher", "Louis Fleisher", "Benjamin Bernstein", "Joseph Bernstein", "Eddie Fletcher"]
+};
 
 /***/ }),
 
@@ -675,75 +879,554 @@ var Deck = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "socket": () => (/* binding */ socket),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _classes_Deck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../classes/Deck */ "./src/classes/Deck.js");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/wrapper.mjs");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../socket */ "./src/socket.js");
+/* harmony import */ var _socketEvents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../socketEvents */ "./src/socketEvents.js");
+/* harmony import */ var _GamesList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./GamesList */ "./src/components/GamesList.js");
+/* harmony import */ var _board_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./board.css */ "./src/components/board.css");
+/* harmony import */ var _header_Header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header/Header */ "./src/components/header/Header.js");
+/* harmony import */ var _Player_Player__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Player/Player */ "./src/components/Player/Player.js");
+/* harmony import */ var _Opponents_Opponents__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Opponents/Opponents */ "./src/components/Opponents/Opponents.js");
 
 
 
 
-var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_3__.io)('http://localhost:3000');
+
+
+
+
+
 
 var Board = function Board() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
-      playerID = _useState2[0],
-      setPlayerID = _useState2[1];
+      userID = _useState2[0],
+      setUserID = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
       _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState3, 2),
-      gameID = _useState4[0],
-      setGameID = _useState4[1];
+      gamesList = _useState4[0],
+      setGamesList = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(3),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState5, 2),
-      numberOfPlayers = _useState6[0],
-      setNumberOfPlayers = _useState6[1];
+      gameName = _useState6[0],
+      setGameName = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState8 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState7, 2),
-      executionList = _useState8[0],
-      setExecutionList = _useState8[1];
+      gameID = _useState8[0],
+      setGameID = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(3),
       _useState10 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState9, 2),
-      executionWall = _useState10[0],
-      setExecutionWall = _useState10[1];
+      numberOfPlayers = _useState10[0],
+      setNumberOfPlayers = _useState10[1];
 
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState12 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState11, 2),
-      cemetery = _useState12[0],
-      setCemetery = _useState12[1];
+      opponentsIDs = _useState12[0],
+      setOpponentsIDs = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState14 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState13, 2),
-      deck = _useState14[0],
-      setDeck = _useState14[1];
+      joined = _useState14[0],
+      setJoined = _useState14[1];
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    gameID: '',
+    gameState: 'waiting',
+    players: [],
+    initPlayers: [],
+    executionList: [],
+    executionWall: null,
+    cemetery: [],
+    deck: [],
+    isWar: false
+  }),
       _useState16 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState15, 2),
-      isWar = _useState16[0],
-      setIsWar = _useState16[1];
+      gameObject = _useState16[0],
+      setGameObject = _useState16[1];
 
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    playerID: '',
+    hand: [],
+    mobsters: [],
+    family: '',
+    playerTurn: false
+  }),
       _useState18 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState17, 2),
-      hand = _useState18[0],
-      setHand = _useState18[1];
+      player = _useState18[0],
+      setPlayer = _useState18[1];
 
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState20 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState19, 2),
-      mobsters = _useState20[0],
-      setMobsters = _useState20[1];
+      opponentPlayers = _useState20[0],
+      setOpponentPlayers = _useState20[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h1", null, "Board"));
+  _socket__WEBPACK_IMPORTED_MODULE_2__.socket.on('updateGameList', (0,_socketEvents__WEBPACK_IMPORTED_MODULE_3__.handleUpdateGameList)(setGamesList));
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    _socket__WEBPACK_IMPORTED_MODULE_2__.socket.on('handshake', (0,_socketEvents__WEBPACK_IMPORTED_MODULE_3__.handleHandshake)(setUserID, setGamesList));
+    return function () {
+      return _socket__WEBPACK_IMPORTED_MODULE_2__.socket.off('handshake');
+    };
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    _socket__WEBPACK_IMPORTED_MODULE_2__.socket.on('joined', (0,_socketEvents__WEBPACK_IMPORTED_MODULE_3__.handleJoined)({
+      setGameID: setGameID,
+      setGameName: setGameName,
+      setOpponentsIDs: setOpponentsIDs,
+      setUserID: setUserID,
+      userID: userID
+    }));
+    return function () {
+      return _socket__WEBPACK_IMPORTED_MODULE_2__.socket.off('joined');
+    };
+  }, [joined]);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    _socket__WEBPACK_IMPORTED_MODULE_2__.socket.on('gameStarted', (0,_socketEvents__WEBPACK_IMPORTED_MODULE_3__.handleGameStarted)(gameObject, setGameObject));
+    return function () {
+      return _socket__WEBPACK_IMPORTED_MODULE_2__.socket.off('gameStarted');
+    };
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (gameObject.gameState === 'playing') {
+      // find player
+      var thisPlayer = gameObject.initPlayers.find(function (p) {
+        return p.playerID === userID;
+      });
+
+      if (!thisPlayer) {
+        throw Error("Can't find the player");
+      }
+
+      setPlayer(thisPlayer); // set opponents
+
+      var theseOpponents = gameObject.initPlayers.filter(function (p) {
+        return p.playerID !== userID;
+      });
+      setOpponentPlayers(theseOpponents);
+    }
+  }, [gameObject]);
+  console.log('======================');
+  console.log('|     GAME STATUS    |');
+  console.log('======================');
+  console.log(gameObject);
+  console.log(player);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "board"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, !joined && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_GamesList__WEBPACK_IMPORTED_MODULE_4__.default, {
+    gamesList: gamesList,
+    userID: userID,
+    setJoined: setJoined
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "game"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_header_Header__WEBPACK_IMPORTED_MODULE_6__.default, {
+    gameID: gameID,
+    userID: userID,
+    opponentsIDs: opponentsIDs,
+    gameName: gameName,
+    numberOfPlayers: numberOfPlayers,
+    gameState: gameObject.gameState
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Opponents_Opponents__WEBPACK_IMPORTED_MODULE_8__.default, {
+    opponents: opponentPlayers
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Player_Player__WEBPACK_IMPORTED_MODULE_7__.default, {
+    player: player
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Board);
+
+/***/ }),
+
+/***/ "./src/components/Card/Card.js":
+/*!*************************************!*\
+  !*** ./src/components/Card/Card.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _card_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./card.css */ "./src/components/Card/card.css");
+
+
+
+var Card = function Card(_ref) {
+  var card = _ref.card,
+      type = _ref.type,
+      opponent = _ref.opponent;
+  var cardToRender = {};
+
+  if (type === 'mobster') {
+    cardToRender.id = card.cardID;
+    cardToRender.name = card.name;
+    cardToRender.fmily = card.familyName;
+    cardToRender.color = card.color;
+  }
+
+  if (type === 'action') {
+    cardToRender.id = card.cardID;
+    cardToRender.name = card.name;
+    cardToRender.description = card.description;
+    cardToRender.type = card.type;
+    cardToRender.back = opponent && 'backCard';
+  }
+
+  var opponentCard = opponent ? 'opponentCard' : undefined;
+  console.log(cardToRender, card);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "card card-".concat(type, " ").concat(cardToRender.type && !cardToRender.back && cardToRender.type, " ").concat(cardToRender.color && cardToRender.color, " ").concat(cardToRender.back && cardToRender.back, " ").concat(opponentCard && opponentCard),
+    id: card.id
+  }, type === 'mobster' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "cardContent"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", null, type, " card"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, card.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", null, card.family)), type === 'action' && !cardToRender.back && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "cardContent"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", null, type, " card"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+    className: "actionCardName"
+  }, card.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", {
+    className: "cardDescription"
+  }, card.description)));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Card);
+
+/***/ }),
+
+/***/ "./src/components/GamesList.js":
+/*!*************************************!*\
+  !*** ./src/components/GamesList.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../socket */ "./src/socket.js");
+/* harmony import */ var _gamesList_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gamesList.css */ "./src/components/gamesList.css");
+
+
+
+
+
+
+var GamesList = function GamesList(_ref) {
+  var gamesList = _ref.gamesList,
+      userID = _ref.userID,
+      setJoined = _ref.setJoined;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('New Game'),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
+      newGameName = _useState2[0],
+      setNewGameName = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(3),
+      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState3, 2),
+      newGameNumberOfPlayers = _useState4[0],
+      setNewGameNumberOfPlayers = _useState4[1];
+
+  var gameForStorage = {
+    userID: '',
+    gameID: ''
+  };
+
+  var handleJoinGame = function handleJoinGame(e) {
+    var gameID = e.target.id || (0,uuid__WEBPACK_IMPORTED_MODULE_4__.default)();
+    gameForStorage.gameID = gameID;
+    gameForStorage.userID = userID;
+    localStorage.setItem('game', JSON.stringify(gameForStorage));
+    _socket__WEBPACK_IMPORTED_MODULE_2__.socket.emit('gameJoin', {
+      gameID: gameID,
+      newGameName: newGameName,
+      newGameNumberOfPlayers: newGameNumberOfPlayers,
+      userID: userID
+    });
+    setJoined(true);
+  };
+
+  var handleChange = function handleChange(e) {
+    var n = e.target.value;
+
+    if (parseInt(n) < 3) {
+      setNewGameNumberOfPlayers(3);
+    } else if (parseInt(n) > 6) {
+      setNewGameNumberOfPlayers(6);
+    } else {
+      setNewGameNumberOfPlayers(n);
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "gamesList"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "datafield"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("label", {
+    htmlFor: "gameName"
+  }, "Game Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+    type: "text",
+    value: newGameName,
+    onChange: function onChange(e) {
+      return setNewGameName(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "datafield"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("label", {
+    htmlFor: "numberOfPlayers"
+  }, "Number of Players"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+    type: "number",
+    value: newGameNumberOfPlayers,
+    onChange: handleChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+    onClick: handleJoinGame
+  }, "Create Game")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "listOfGames"
+  }, Object.keys(gamesList).map(function (id) {
+    var _gamesList$id = gamesList[id],
+        gameName = _gamesList$id.gameName,
+        numberOfPlayers = _gamesList$id.numberOfPlayers,
+        players = _gamesList$id.players;
+    var joined = players.length;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+      key: id,
+      className: "gameInGameList"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h4", null, gameName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("small", null, "players ", joined, "/", numberOfPlayers), joined < numberOfPlayers && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+      id: id,
+      onClick: handleJoinGame
+    }, "Join"));
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GamesList);
+
+/***/ }),
+
+/***/ "./src/components/Opponents/Opponents.js":
+/*!***********************************************!*\
+  !*** ./src/components/Opponents/Opponents.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Player_Player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Player/Player */ "./src/components/Player/Player.js");
+/* harmony import */ var _opponents_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./opponents.css */ "./src/components/Opponents/opponents.css");
+
+
+
+
+var Opponents = function Opponents(_ref) {
+  var opponents = _ref.opponents;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "opponents"
+  }, opponents.length && opponents.map(function (p) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Player_Player__WEBPACK_IMPORTED_MODULE_1__.default, {
+      opponent: true,
+      player: p
+    });
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Opponents);
+
+/***/ }),
+
+/***/ "./src/components/Player/Player.js":
+/*!*****************************************!*\
+  !*** ./src/components/Player/Player.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Card_Card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Card/Card */ "./src/components/Card/Card.js");
+/* harmony import */ var _player_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./player.css */ "./src/components/Player/player.css");
+
+
+
+
+var Player = function Player(_ref) {
+  var player = _ref.player,
+      opponent = _ref.opponent;
+  var mobsters = player.mobsters;
+  var hand = player.hand;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "player ".concat(opponent && 'opponentPlayer')
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "handCards"
+  }, hand.length > 0 && hand.map(function (card) {
+    console.log(card);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Card_Card__WEBPACK_IMPORTED_MODULE_1__.default, {
+      type: "action",
+      opponent: opponent,
+      card: card,
+      key: card.cardID
+    });
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "mobsterCards"
+  }, mobsters.length > 0 && mobsters.map(function (mobster) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Card_Card__WEBPACK_IMPORTED_MODULE_1__.default, {
+      type: "mobster",
+      card: mobster,
+      opponent: opponent,
+      key: mobster.cardID
+    });
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
+
+/***/ }),
+
+/***/ "./src/components/header/Header.js":
+/*!*****************************************!*\
+  !*** ./src/components/header/Header.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _classes_Deck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../classes/Deck */ "./src/classes/Deck.js");
+/* harmony import */ var _classes_families__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../classes/families */ "./src/classes/families.js");
+/* harmony import */ var _classes_Player__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../classes/Player */ "./src/classes/Player.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../socket */ "./src/socket.js");
+/* harmony import */ var _header_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header.css */ "./src/components/header/header.css");
+
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+
+var Header = function Header(_ref) {
+  var gameID = _ref.gameID,
+      userID = _ref.userID,
+      opponentsIDs = _ref.opponentsIDs,
+      gameName = _ref.gameName,
+      numberOfPlayers = _ref.numberOfPlayers,
+      gameState = _ref.gameState;
+  var partecipants = 1 + opponentsIDs.length;
+  console.log(gameID, userID, opponentsIDs, numberOfPlayers, gameName);
+
+  var handleStartGame = function handleStartGame() {
+    // Creating Players and assigning random families
+    var families = [_classes_families__WEBPACK_IMPORTED_MODULE_3__.MurderInc, _classes_families__WEBPACK_IMPORTED_MODULE_3__.newYorkMob, _classes_families__WEBPACK_IMPORTED_MODULE_3__.PurpleGang];
+    var playersIDs = [userID].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(opponentsIDs));
+    var initPlayers = [];
+
+    var _iterator = _createForOfIteratorHelper(playersIDs),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var playerID = _step.value;
+        var ranIndex = Math.floor(Math.random() * families.length);
+        var familyObj = families.splice(ranIndex, 1);
+        console.log('====== assigned family');
+        console.log(familyObj);
+        var p = new _classes_Player__WEBPACK_IMPORTED_MODULE_4__.Player(playerID, familyObj[0]);
+        p.initFamily();
+        initPlayers.push(p);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    var deck = new _classes_Deck__WEBPACK_IMPORTED_MODULE_2__.Deck();
+    deck.createDeck();
+    _classes_Deck__WEBPACK_IMPORTED_MODULE_2__.Deck.shuffle(deck.deck);
+
+    for (var _i = 0, _initPlayers = initPlayers; _i < _initPlayers.length; _i++) {
+      var playerObj = _initPlayers[_i];
+      _classes_Deck__WEBPACK_IMPORTED_MODULE_2__.Deck.serve(deck.deck, playerObj);
+    }
+
+    console.log(initPlayers);
+    _socket__WEBPACK_IMPORTED_MODULE_5__.socket.emit('startGame', {
+      gameID: gameID,
+      deck: deck,
+      initPlayers: initPlayers
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "datafield"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h4", null, "Game Name:"), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+    className: "headerInput",
+    readOnly: true,
+    defaultValue: gameName
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "datafield"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h4", null, "GameID:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+    className: "headerInput",
+    readOnly: true,
+    defaultValue: gameID
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "datafield"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h4", null, "opponentsIDs:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+    className: "headerInput",
+    readOnly: true,
+    defaultValue: opponentsIDs.map(function (id) {
+      return id + ', ';
+    })
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "datafield"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h4", null, "Joined:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+    className: "headerInput",
+    readOnly: true,
+    defaultValue: partecipants + ' / ' + numberOfPlayers
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "datafield"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h4", null, "UserID:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+    className: "headerInput",
+    readOnly: true,
+    defaultValue: userID
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "datadfield"
+  }, numberOfPlayers === partecipants && gameState !== 'playing' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+    onClick: handleStartGame
+  }, "Start The Game"), numberOfPlayers !== partecipants && 'Waiting for players to join...'));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
 
 /***/ }),
 
@@ -765,6 +1448,90 @@ __webpack_require__.r(__webpack_exports__);
 
 var root = document.getElementById('root');
 react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null)), root);
+
+/***/ }),
+
+/***/ "./src/socket.js":
+/*!***********************!*\
+  !*** ./src/socket.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "socket": () => (/* binding */ socket)
+/* harmony export */ });
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/wrapper.mjs");
+
+var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_0__.io)('http://localhost:3000');
+
+/***/ }),
+
+/***/ "./src/socketEvents.js":
+/*!*****************************!*\
+  !*** ./src/socketEvents.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "handleHandshake": () => (/* binding */ handleHandshake),
+/* harmony export */   "handleUpdateGameList": () => (/* binding */ handleUpdateGameList),
+/* harmony export */   "handleJoined": () => (/* binding */ handleJoined),
+/* harmony export */   "handleGameStarted": () => (/* binding */ handleGameStarted)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var handleHandshake = function handleHandshake(setUserID, setGamesList) {
+  return function (_ref) {
+    var userID = _ref.userID,
+        games = _ref.games;
+    setUserID(userID);
+    setGamesList(games);
+  };
+};
+var handleUpdateGameList = function handleUpdateGameList(setGamesList) {
+  return function (games) {
+    setGamesList(games);
+  };
+};
+var handleJoined = function handleJoined(_ref2) {
+  var setGameID = _ref2.setGameID,
+      setGameName = _ref2.setGameName,
+      setUserID = _ref2.setUserID,
+      setOpponentsIDs = _ref2.setOpponentsIDs,
+      userID = _ref2.userID;
+  return function (gameToJoin) {
+    var gameID = gameToJoin.gameID,
+        gameName = gameToJoin.gameName,
+        players = gameToJoin.players;
+    var opponenentsIDs = players.filter(function (p) {
+      return p !== userID;
+    });
+    setGameID(gameID);
+    setGameName(gameName);
+    setUserID(userID);
+    setOpponentsIDs(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(opponenentsIDs));
+  };
+};
+var handleGameStarted = function handleGameStarted(gameObject, setGameObject) {
+  return function (game) {
+    console.log('Socket game event');
+    console.log(game);
+    setGameObject(_objectSpread(_objectSpread({}, gameObject), game));
+  };
+};
 
 /***/ }),
 
@@ -1117,6 +1884,168 @@ Emitter.prototype.hasListeners = function(event){
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/components/Card/card.css":
+/*!****************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/components/Card/card.css ***!
+  \****************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".card {\n    width: 50px;\n    height: 90px;\n    margin: 2px;\n    /* position: relative; */\n    border-radius: 5px;\n    border: 2px solid blanchedalmond;\n    cursor: pointer;\n    z-index: 0;\n    padding: 5px;\n}\n\n.card:hover {\n    transform: scale(3.2);\n    bottom: 130px;\n    right: 50px;\n    z-index: 1;\n}\n\n.card:hover .actionCardName {\n    font-size: 5px;\n    margin-top: 2px;\n}\n\n.card:hover .cardDescription {\n    display: inline-block;\n    font-size: 4px;\n    left: 0;\n    bottom: 0;\n    top: 0;\n    right: 0;\n}\n\n.cardContent {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n}\n\n.cardContent header {\n    width: 100%;\n    padding: 1px 0;\n    font-size: 8px;\n    font-weight: 900;\n    text-transform: capitalize;\n    border-bottom: 1px solid blanchedalmond;\n}\n\n.cardContent h4 {\n    font-size: 8px;\n    margin: 10px auto;\n    height: 100%;\n}\n\n.cardContent small {\n    position: absolute;\n    font-size: 8px;\n    bottom: 0;\n}\n\n/* Tweaks for action cards */\n\n.actionCardName {\n    margin: 2px auto;\n}\n\n.cardDescription {\n    display: none;\n    position: fixed;\n    height: 48%;\n    margin: auto 5px;\n    font-weight: bold;\n    text-align: justify;\n    line-height: 4px;\n}\n\n/* Card back if it's opponent card */\n\n.backCard {\n    background-color: black;\n}\n\n/* Card colors for gangs*/\n\n.red {\n    background-color: red;\n}\n\n.black {\n    background-color: black;\n    color: white;\n}\n\n.purple {\n    background-color: purple;\n}\n\n/* Card Color for types (counter, attack, rescue */\n\n.attack {\n    background-color: brown;\n}\n\n.counter {\n    background-color: blue;\n}\n\n.rescue {\n    background-color: darkgreen;\n}\n\n/* rescaling for opponent cards*/\n\n.opponentCard {\n    transform: scale(0.6);\n}\n", "",{"version":3,"sources":["webpack://./src/components/Card/card.css"],"names":[],"mappings":"AAAA;IACI,WAAW;IACX,YAAY;IACZ,WAAW;IACX,wBAAwB;IACxB,kBAAkB;IAClB,gCAAgC;IAChC,eAAe;IACf,UAAU;IACV,YAAY;AAChB;;AAEA;IACI,qBAAqB;IACrB,aAAa;IACb,WAAW;IACX,UAAU;AACd;;AAEA;IACI,cAAc;IACd,eAAe;AACnB;;AAEA;IACI,qBAAqB;IACrB,cAAc;IACd,OAAO;IACP,SAAS;IACT,MAAM;IACN,QAAQ;AACZ;;AAEA;IACI,aAAa;IACb,sBAAsB;IACtB,mBAAmB;IACnB,kBAAkB;AACtB;;AAEA;IACI,WAAW;IACX,cAAc;IACd,cAAc;IACd,gBAAgB;IAChB,0BAA0B;IAC1B,uCAAuC;AAC3C;;AAEA;IACI,cAAc;IACd,iBAAiB;IACjB,YAAY;AAChB;;AAEA;IACI,kBAAkB;IAClB,cAAc;IACd,SAAS;AACb;;AAEA,4BAA4B;;AAE5B;IACI,gBAAgB;AACpB;;AAEA;IACI,aAAa;IACb,eAAe;IACf,WAAW;IACX,gBAAgB;IAChB,iBAAiB;IACjB,mBAAmB;IACnB,gBAAgB;AACpB;;AAEA,oCAAoC;;AAEpC;IACI,uBAAuB;AAC3B;;AAEA,yBAAyB;;AAEzB;IACI,qBAAqB;AACzB;;AAEA;IACI,uBAAuB;IACvB,YAAY;AAChB;;AAEA;IACI,wBAAwB;AAC5B;;AAEA,kDAAkD;;AAElD;IACI,uBAAuB;AAC3B;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,2BAA2B;AAC/B;;AAEA,gCAAgC;;AAEhC;IACI,qBAAqB;AACzB","sourcesContent":[".card {\n    width: 50px;\n    height: 90px;\n    margin: 2px;\n    /* position: relative; */\n    border-radius: 5px;\n    border: 2px solid blanchedalmond;\n    cursor: pointer;\n    z-index: 0;\n    padding: 5px;\n}\n\n.card:hover {\n    transform: scale(3.2);\n    bottom: 130px;\n    right: 50px;\n    z-index: 1;\n}\n\n.card:hover .actionCardName {\n    font-size: 5px;\n    margin-top: 2px;\n}\n\n.card:hover .cardDescription {\n    display: inline-block;\n    font-size: 4px;\n    left: 0;\n    bottom: 0;\n    top: 0;\n    right: 0;\n}\n\n.cardContent {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n}\n\n.cardContent header {\n    width: 100%;\n    padding: 1px 0;\n    font-size: 8px;\n    font-weight: 900;\n    text-transform: capitalize;\n    border-bottom: 1px solid blanchedalmond;\n}\n\n.cardContent h4 {\n    font-size: 8px;\n    margin: 10px auto;\n    height: 100%;\n}\n\n.cardContent small {\n    position: absolute;\n    font-size: 8px;\n    bottom: 0;\n}\n\n/* Tweaks for action cards */\n\n.actionCardName {\n    margin: 2px auto;\n}\n\n.cardDescription {\n    display: none;\n    position: fixed;\n    height: 48%;\n    margin: auto 5px;\n    font-weight: bold;\n    text-align: justify;\n    line-height: 4px;\n}\n\n/* Card back if it's opponent card */\n\n.backCard {\n    background-color: black;\n}\n\n/* Card colors for gangs*/\n\n.red {\n    background-color: red;\n}\n\n.black {\n    background-color: black;\n    color: white;\n}\n\n.purple {\n    background-color: purple;\n}\n\n/* Card Color for types (counter, attack, rescue */\n\n.attack {\n    background-color: brown;\n}\n\n.counter {\n    background-color: blue;\n}\n\n.rescue {\n    background-color: darkgreen;\n}\n\n/* rescaling for opponent cards*/\n\n.opponentCard {\n    transform: scale(0.6);\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/components/Opponents/opponents.css":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/components/Opponents/opponents.css ***!
+  \**************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".opponents {\n    display: flex;\n    justify-content: space-between;\n}\n", "",{"version":3,"sources":["webpack://./src/components/Opponents/opponents.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,8BAA8B;AAClC","sourcesContent":[".opponents {\n    display: flex;\n    justify-content: space-between;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/components/Player/player.css":
+/*!********************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/components/Player/player.css ***!
+  \********************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".player {\n    background-color: lightblue;\n    width: 100%;\n    display: flex;\n    flex-direction: column-reverse;\n    align-items: center;\n}\n\n.opponentPlayer {\n    background-color: lightgray;\n    margin-top: 5vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    width: 500px;\n    margin: 5px;\n    padding: 2px;\n}\n\n.handCards {\n    display: flex;\n    width: 100%;\n    justify-content: center;\n    align-items: center;\n}\n\n.mobsterCards {\n    width: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n", "",{"version":3,"sources":["webpack://./src/components/Player/player.css"],"names":[],"mappings":"AAAA;IACI,2BAA2B;IAC3B,WAAW;IACX,aAAa;IACb,8BAA8B;IAC9B,mBAAmB;AACvB;;AAEA;IACI,2BAA2B;IAC3B,eAAe;IACf,aAAa;IACb,sBAAsB;IACtB,uBAAuB;IACvB,mBAAmB;IACnB,YAAY;IACZ,WAAW;IACX,YAAY;AAChB;;AAEA;IACI,aAAa;IACb,WAAW;IACX,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;IACI,WAAW;IACX,aAAa;IACb,mBAAmB;IACnB,uBAAuB;AAC3B","sourcesContent":[".player {\n    background-color: lightblue;\n    width: 100%;\n    display: flex;\n    flex-direction: column-reverse;\n    align-items: center;\n}\n\n.opponentPlayer {\n    background-color: lightgray;\n    margin-top: 5vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    width: 500px;\n    margin: 5px;\n    padding: 2px;\n}\n\n.handCards {\n    display: flex;\n    width: 100%;\n    justify-content: center;\n    align-items: center;\n}\n\n.mobsterCards {\n    width: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/components/board.css":
+/*!************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/components/board.css ***!
+  \************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".board {\n    display: flex;\n}\n\n.game {\n    border: 1px solid black;\n    width: 100%;\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n}\n", "",{"version":3,"sources":["webpack://./src/components/board.css"],"names":[],"mappings":"AAAA;IACI,aAAa;AACjB;;AAEA;IACI,uBAAuB;IACvB,WAAW;IACX,aAAa;IACb,aAAa;IACb,sBAAsB;IACtB,8BAA8B;IAC9B,mBAAmB;AACvB","sourcesContent":[".board {\n    display: flex;\n}\n\n.game {\n    border: 1px solid black;\n    width: 100%;\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/components/gamesList.css":
+/*!****************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/components/gamesList.css ***!
+  \****************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".gamesList {\n    border: 1px solid black;\n    text-align: center;\n    height: 90vh;\n}\n\n.gameInGameList {\n    border: 1px solid black;\n    cursor: pointer;\n    display: flex;\n    flex-direction: column;\n}\n", "",{"version":3,"sources":["webpack://./src/components/gamesList.css"],"names":[],"mappings":"AAAA;IACI,uBAAuB;IACvB,kBAAkB;IAClB,YAAY;AAChB;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,aAAa;IACb,sBAAsB;AAC1B","sourcesContent":[".gamesList {\n    border: 1px solid black;\n    text-align: center;\n    height: 90vh;\n}\n\n.gameInGameList {\n    border: 1px solid black;\n    cursor: pointer;\n    display: flex;\n    flex-direction: column;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/components/header/header.css":
+/*!********************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/components/header/header.css ***!
+  \********************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".header {\n    border: 1px solid red;\n    display: flex;\n    align-items: center;\n    justify-content: space-evenly;\n}\n\n.headerInput {\n    border: 1px solid grey;\n}\n", "",{"version":3,"sources":["webpack://./src/components/header/header.css"],"names":[],"mappings":"AAAA;IACI,qBAAqB;IACrB,aAAa;IACb,mBAAmB;IACnB,6BAA6B;AACjC;;AAEA;IACI,sBAAsB;AAC1B","sourcesContent":[".header {\n    border: 1px solid red;\n    display: flex;\n    align-items: center;\n    justify-content: space-evenly;\n}\n\n.headerInput {\n    border: 1px solid grey;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/sharedStyle/main.css":
 /*!************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/sharedStyle/main.css ***!
@@ -1137,7 +2066,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n    --color-main: rgba(0, 0, 10, 1);\n    --color-main-transparent: rgba(0, 0, 10, 0.7);\n    --color-second: rgba(0, 0, 0, 1);\n    --color-second: rgba(0, 0, 0, 0.7);\n}\n", "",{"version":3,"sources":["webpack://./src/sharedStyle/main.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,SAAS;IACT,gBAAgB;IAChB,+BAA+B;IAC/B,6CAA6C;IAC7C,gCAAgC;IAChC,kCAAkC;AACtC","sourcesContent":["* {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n    --color-main: rgba(0, 0, 10, 1);\n    --color-main-transparent: rgba(0, 0, 10, 0.7);\n    --color-second: rgba(0, 0, 0, 1);\n    --color-second: rgba(0, 0, 0, 0.7);\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n    --color-main: rgba(0, 0, 10, 1);\n    --color-main-transparent: rgba(0, 0, 10, 0.7);\n    --color-second: rgba(0, 0, 0, 1);\n    --color-second: rgba(0, 0, 0, 0.7);\n}\n\n.datafield {\n    background-color: lightgrey;\n}\n", "",{"version":3,"sources":["webpack://./src/sharedStyle/main.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,SAAS;IACT,gBAAgB;IAChB,+BAA+B;IAC/B,6CAA6C;IAC7C,gCAAgC;IAChC,kCAAkC;AACtC;;AAEA;IACI,2BAA2B;AAC/B","sourcesContent":["* {\n    border: 0;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n    --color-main: rgba(0, 0, 10, 1);\n    --color-main-transparent: rgba(0, 0, 10, 0.7);\n    --color-second: rgba(0, 0, 0, 1);\n    --color-second: rgba(0, 0, 0, 0.7);\n}\n\n.datafield {\n    background-color: lightgrey;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39856,6 +40785,186 @@ exports.hasBinary = hasBinary;
 
 /***/ }),
 
+/***/ "./src/components/Card/card.css":
+/*!**************************************!*\
+  !*** ./src/components/Card/card.css ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_card_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./card.css */ "./node_modules/css-loader/dist/cjs.js!./src/components/Card/card.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_card_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_card_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./src/components/Opponents/opponents.css":
+/*!************************************************!*\
+  !*** ./src/components/Opponents/opponents.css ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_opponents_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./opponents.css */ "./node_modules/css-loader/dist/cjs.js!./src/components/Opponents/opponents.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_opponents_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_opponents_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./src/components/Player/player.css":
+/*!******************************************!*\
+  !*** ./src/components/Player/player.css ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_player_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./player.css */ "./node_modules/css-loader/dist/cjs.js!./src/components/Player/player.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_player_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_player_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./src/components/board.css":
+/*!**********************************!*\
+  !*** ./src/components/board.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_board_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./board.css */ "./node_modules/css-loader/dist/cjs.js!./src/components/board.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_board_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_board_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./src/components/gamesList.css":
+/*!**************************************!*\
+  !*** ./src/components/gamesList.css ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_gamesList_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./gamesList.css */ "./node_modules/css-loader/dist/cjs.js!./src/components/gamesList.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_gamesList_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_gamesList_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./src/components/header/header.css":
+/*!******************************************!*\
+  !*** ./src/components/header/header.css ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_header_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./header.css */ "./node_modules/css-loader/dist/cjs.js!./src/components/header/header.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_header_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_header_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./src/sharedStyle/main.css":
 /*!**********************************!*\
   !*** ./src/sharedStyle/main.css ***!
@@ -40225,6 +41334,161 @@ function warning(condition, message) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (warning);
 
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/regex.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/regex.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/rng.js":
+/*!***************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/rng.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ rng)
+/* harmony export */ });
+// Unique ID creation requires a high quality random # generator. In the browser we therefore
+// require the crypto API and do not support built-in fallback to lower quality random number
+// generators (like Math.random()).
+var getRandomValues;
+var rnds8 = new Uint8Array(16);
+function rng() {
+  // lazy load so that environments that need to polyfill have a chance to do so
+  if (!getRandomValues) {
+    // getRandomValues needs to be invoked in a context where "this" is a Crypto implementation. Also,
+    // find the complete implementation of crypto (msCrypto) on IE11.
+    getRandomValues = typeof crypto !== 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto !== 'undefined' && typeof msCrypto.getRandomValues === 'function' && msCrypto.getRandomValues.bind(msCrypto);
+
+    if (!getRandomValues) {
+      throw new Error('crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported');
+    }
+  }
+
+  return getRandomValues(rnds8);
+}
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/stringify.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/stringify.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
+
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+
+var byteToHex = [];
+
+for (var i = 0; i < 256; ++i) {
+  byteToHex.push((i + 0x100).toString(16).substr(1));
+}
+
+function stringify(arr) {
+  var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  // Note: Be careful editing this code!  It's been tuned for performance
+  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
+  var uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase(); // Consistency check for valid UUID.  If this throws, it's likely due to one
+  // of the following:
+  // - One or more input array values don't map to a hex octet (leading to
+  // "undefined" in the uuid)
+  // - Invalid input values for the RFC `version` or `variant` fields
+
+  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__.default)(uuid)) {
+    throw TypeError('Stringified UUID is invalid');
+  }
+
+  return uuid;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stringify);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/v4.js":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/v4.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
+
+
+
+function v4(options, buf, offset) {
+  options = options || {};
+  var rnds = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__.default)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+
+  rnds[6] = rnds[6] & 0x0f | 0x40;
+  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
+
+  if (buf) {
+    offset = offset || 0;
+
+    for (var i = 0; i < 16; ++i) {
+      buf[offset + i] = rnds[i];
+    }
+
+    return buf;
+  }
+
+  return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__.default)(rnds);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (v4);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/validate.js":
+/*!********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/validate.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _regex_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./regex.js */ "./node_modules/uuid/dist/esm-browser/regex.js");
+
+
+function validate(uuid) {
+  return typeof uuid === 'string' && _regex_js__WEBPACK_IMPORTED_MODULE_0__.default.test(uuid);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);
 
 /***/ }),
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import './card.css'
-const Card = ({ card, type }) => {
+const Card = ({ card, type, opponent }) => {
     const cardToRender = {}
 
     if (type === 'mobster') {
@@ -15,13 +15,19 @@ const Card = ({ card, type }) => {
         cardToRender.name = card.name
         cardToRender.description = card.description
         cardToRender.type = card.type
+        cardToRender.back = opponent && 'backCard'
     }
 
+    const opponentCard = opponent ? 'opponentCard' : undefined
     console.log(cardToRender, card)
 
     return (
         <div
-            className={`card card-${type} ${card.color} ${card.type}`}
+            className={`card card-${type} ${
+                cardToRender.type && !cardToRender.back && cardToRender.type
+            } ${cardToRender.color && cardToRender.color} ${
+                cardToRender.back && cardToRender.back
+            } ${opponentCard && opponentCard}`}
             id={card.id}
         >
             {type === 'mobster' && (
@@ -31,7 +37,7 @@ const Card = ({ card, type }) => {
                     <small>{card.family}</small>
                 </div>
             )}
-            {type === 'action' && (
+            {type === 'action' && !cardToRender.back && (
                 <div className="cardContent">
                     <header>{type} card</header>
                     <h4 className="actionCardName">{card.name}</h4>

@@ -3,18 +3,23 @@ import Card from '../Card/Card'
 
 import './player.css'
 
-const Player = ({ player }) => {
+const Player = ({ player, opponent }) => {
     const mobsters = player.mobsters
     const hand = player.hand
 
     return (
-        <div className="player">
+        <div className={`player ${opponent && 'opponentPlayer'}`}>
             <div className="handCards">
                 {hand.length > 0 &&
                     hand.map((card) => {
                         console.log(card)
                         return (
-                            <Card type="action" card={card} key={card.cardID} />
+                            <Card
+                                type="action"
+                                opponent={opponent}
+                                card={card}
+                                key={card.cardID}
+                            />
                         )
                     })}
             </div>
@@ -25,6 +30,7 @@ const Player = ({ player }) => {
                             <Card
                                 type="mobster"
                                 card={mobster}
+                                opponent={opponent}
                                 key={mobster.cardID}
                             />
                         )

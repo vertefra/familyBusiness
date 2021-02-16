@@ -12,6 +12,7 @@ import GamesList from './GamesList'
 import './board.css'
 import Header from './header/Header'
 import Player from './Player/Player'
+import Opponents from './Opponents/Opponents'
 
 const Board = () => {
     const [userID, setUserID] = useState('')
@@ -121,6 +122,7 @@ const Board = () => {
                     numberOfPlayers={numberOfPlayers}
                     gameState={gameObject.gameState}
                 />
+                <Opponents opponents={opponentPlayers} />
                 <Player player={player} />
             </div>
         </div>
