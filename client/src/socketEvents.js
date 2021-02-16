@@ -38,3 +38,24 @@ export const handleGameStarted = (gameObject, setGameObject) => {
         })
     }
 }
+
+export const handleGameSync = (gameObject, setGameObject) => {
+    return (game) => {
+        const players = [...game.players]
+        const initPlayers = [...game.initPlayers]
+        const executionList = [...game.executionList]
+        const executionWall = { ...game.executionWall }
+        const cemetery = [...game.cemetery]
+        const deck = [...game.deck]
+        setGameObject({
+            ...gameObject,
+            ...game,
+            players,
+            initPlayers,
+            executionList,
+            executionWall,
+            cemetery,
+            deck,
+        })
+    }
+}

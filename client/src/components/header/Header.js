@@ -40,7 +40,15 @@ const Header = ({
             Deck.serve(deck.deck, playerObj)
         }
 
-        console.log(initPlayers)
+        // randomly selecting the player that will start the turn
+
+        const randomIndex = Math.floor(Math.random() * initPlayers.length)
+
+        console.log('PLAYER => ', randomIndex)
+        console.log('WILL START THE MATCH')
+
+        const playerStarting = initPlayers[randomIndex]
+        playerStarting.playerTurn = true
 
         socket.emit('startGame', { gameID, deck, initPlayers })
     }

@@ -7,6 +7,9 @@ export class Player {
         this.hand = []
         this.mobsters = []
         this.playerTurn = false
+        this.playerDraw = false
+        this.playerPlay = false
+        this.playerEnd = false
     }
 
     initFamily() {

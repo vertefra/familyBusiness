@@ -80,6 +80,12 @@ io.on('connection', (socket) => {
 		io.to(gameID).emit('gameStarted', gameToStart);
 	});
 
+	socket.on('syncGame', (game) => {
+		const gameID = game;
+		console.log(chalk.greenBright('-Syncying Game ', gameID));
+		io.to(gameID).emit('syncGame', game);
+	});
+
 	socket.on('disconnect', () => {
 		const playerID = socket.id;
 		console.log(chalk.yellow(`\n - Player ${playerID} disconnected`));

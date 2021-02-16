@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { socket } from '../socket'
 import {
     handleGameStarted,
+    handleGameSync,
     handleHandshake,
     handleJoined,
     handleUpdateGameList,
@@ -42,11 +43,15 @@ const Board = () => {
         mobsters: [],
         family: '',
         playerTurn: false,
+        playerDraw: false,
+        playerPlay: false,
+        playerEnd: false,
     })
 
     const [opponentPlayers, setOpponentPlayers] = useState([])
 
     socket.on('updateGameList', handleUpdateGameList(setGamesList))
+    socket.on('syncGame', handleGameSync(gameObject, setGameObject))
 
     useEffect(() => {
         socket.on('handshake', handleHandshake(setUserID, setGamesList))
@@ -94,14 +99,6 @@ const Board = () => {
         }
     }, [gameObject])
 
-    console.log('======================')
-    console.log('|     GAME STATUS    |')
-    console.log('======================')
-
-    console.log(gameObject)
-
-    console.log(player)
-
     return (
         <div className="board">
             <div>
@@ -123,7 +120,11 @@ const Board = () => {
                     gameState={gameObject.gameState}
                 />
                 <Opponents opponents={opponentPlayers} />
-                <Player player={player} />
+                <Player
+                    player={player}
+                    setPlayer={setPlayer}
+                    game={gameObject}
+                />
             </div>
         </div>
     )
